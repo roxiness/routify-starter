@@ -3,11 +3,15 @@
   "version": "1.0.0",
   "scripts": {
     "build": "rollup -c",
-    "dev": "rollup -c -w",
-    "start": "sirv public"
+    "dev": "run-p watch:routify watch:rollup",
+    "watch:rollup": "rollup -c -w",
+    "watch:routify": "routify",
+    "start": "sirv public --single"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^6.0.0",
+    "@sveltech/routify": "next",
+    "npm-run-all": "^4.1.5",
     "rollup": "^1.12.0",
     "rollup-plugin-commonjs": "^10.0.0",
     "rollup-plugin-livereload": "^1.0.0",
