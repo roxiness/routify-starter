@@ -5,6 +5,7 @@
     ["./modal", "Modal"],
     ["./reset", "Reset"],
     ["./nesting", "Nesting"],
+    ["./widget", "Widget"],
     ["./404", "404"]
   ];
 
