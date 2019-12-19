@@ -2,7 +2,6 @@
   import { url } from "@sveltech/routify";
   export let data, id;
   $: item = data.filter(item => item.id == id)[0];
-  $: console.log(item);
 </script>
 
 <div >

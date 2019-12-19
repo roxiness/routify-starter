@@ -1,7 +1,6 @@
 <script>
 import { url } from '@sveltech/routify'
   export let data, id;
-  console.log(id)
 </script>
 
 <style>

@@ -1,7 +1,6 @@
 <script>
   import { goto, url } from "@sveltech/routify";
-  export let key, scoped
-  console.log( 'url',  $url('../') )
+  export let key
 
 </script>
 

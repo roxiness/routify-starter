@@ -1,6 +1,5 @@
 <script>
   import { url, route } from "@sveltech/routify";
-  console.log($route);
 
   $: match = $route.path.match(/\/modal\/([^\/]+)\//);
   $: active = match && match[1]

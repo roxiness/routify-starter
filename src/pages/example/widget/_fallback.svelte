@@ -4,5 +4,4 @@
 </script>
 
 
-<h1>Widget</h1>
 <CrudWidget data={users} />
