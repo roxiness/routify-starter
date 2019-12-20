@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "build": "rollup -c",
+    "buildnow": "npm run build && cd public && now --prod",
     "dev": "run-p watch:routify watch:rollup",
     "watch:rollup": "rollup -c -w",
     "watch:routify": "routify",
