@@ -6,6 +6,7 @@
     ["./reset", "Reset"],
     ["./nesting", "Nesting"],
     ["./widget", "Widget"],
+    ["./aliasing", "Aliasing"],
     ["./404", "404"]
   ];
 
