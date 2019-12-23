@@ -27,14 +27,21 @@
   * :global(.shadow) {
     box-shadow: 0px 5px 20px 5px rgba(0, 0, 0, 0.075);
   }
+
+  .nav {position: fixed; left: 0; right: 0;}
+  .main {overflow: auto; height: 100%; padding-top: 100px}
 </style>
 
 <!-- Reset files doesn't inherit the parent scope.
 This ensures that the example app doesn't inherit
  layouts from the main app. -->
 <div class="example">
-  <NavLinks />
-  <slot>
-    <!-- optional fallback -->
-  </slot>
+  <div class="nav">
+    <NavLinks />
+  </div>
+  <div class="main">
+    <slot>
+      <!-- optional fallback -->
+    </slot>
+  </div>
 </div>

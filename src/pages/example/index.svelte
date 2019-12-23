@@ -8,7 +8,7 @@
   
     <br />
   <div>
-    <b>Template:</b>
+    <b>This template:</b>
     <br />
     <a href="https://github.com/sveltech/routify-starter">
       https://github.com/sveltech/routify-starter

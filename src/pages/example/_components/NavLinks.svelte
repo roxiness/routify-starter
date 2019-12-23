@@ -7,7 +7,8 @@
     ["./nesting", "Nesting"],
     ["./widget", "Widget"],
     ["./aliasing", "Aliasing"],
-    ["./404", "404"]
+    ["./404", "404"],
+    ["./api", "Api"]
   ];
 
   $: links = _links.map(([path, name]) => {
