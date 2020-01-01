@@ -29,7 +29,7 @@
   }
 
   .nav {position: fixed; left: 0; right: 0;}
-  .main {overflow: auto; height: 100%; padding-top: 100px}
+  .main {overflow: auto; height: calc(100% - 100px); padding-top: 100px}
 </style>
 
 <!-- Reset files doesn't inherit the parent scope.

@@ -2,7 +2,7 @@
   import { url, route } from "@sveltech/routify";
 
   $: match = $route.path.match(/\/modal\/([^\/]+)\//);
-  $: active = match && match[1]
+  $: active = match && match[1];
 </script>
 
 <style>
@@ -55,7 +55,7 @@
   }
 </style>
 
-<div>
+<div data-routify="scroll-lock">
 
   <div class="center">
     <a href={$url('./basic')} class={active === 'basic' ? 'active' : ''}>
