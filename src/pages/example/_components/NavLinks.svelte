@@ -4,20 +4,13 @@
     ["./index", "Home"],
     ["./modal", "Modal"],
     ["./reset", "Reset"],
-    ["./nesting", "Nesting"],
+    ["./layouts", "Layouts"],
     ["./widget", "Widget"],
     ["./aliasing", "Aliasing"],
     ["./404", "404"],
-    ["./api", "Api"]
+    ["./api", "Api"],
+    ["./app", "App"]
   ];
-
-  $: links = _links.map(([path, name]) => {
-    return {
-      href: $url(path, {}),
-      name,
-      active: $isActive(path)
-    };
-  });
 </script>
 
 <style>
@@ -43,14 +36,18 @@
     color: white;
     font-weight: bold;
   }
-  .active {font-weight: bold}
+  .active {
+    font-weight: bold;
+  }
 </style>
 
 <aside>
   <div class="nav">
     <a class="backlink" href={$url('/')}>&#8656; BACK TO APP</a>
-    {#each links as { href, name, active }}
-      <a class="link" class:active {href}>{name}</a>
+    {#each _links as [path, name]}
+      <a class="link" class:active={$isActive(path)} href={$url(path)}>
+        {name}
+      </a>
     {/each}
   </div>
 </aside>
