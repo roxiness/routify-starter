@@ -15,7 +15,12 @@
   <div class="card" style="width: 512px; margin: auto">
     <h3>{song.title}</h3>
     <h5>{song.artist}</h5>
-    <iframe width="420" height="315" src={song.url} allowfullscreen />
+    <iframe
+      title="{song.title} - {song.artist}"
+      width="420"
+      height="315"
+      src={song.url}
+      allowfullscreen />
   </div>
   <!-- promise was fulfilled -->
 {/await}
