@@ -5,9 +5,12 @@
     "build": "rollup -c",
     "buildnow": "npm run build && cd public && now --prod",
     "dev": "run-p watch:routify watch:rollup",
+    "dev:split": "run-p watch:routify:split watch:rollup",
     "watch:rollup": "rollup -c -w",
     "watch:routify": "routify",
-    "start": "sirv public --single"
+    "watch:routify:split": "routify -D",
+    "start": "sirv public --single",
+    "start:split": "sirv public --single dynamic.html"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^6.0.0",
@@ -18,9 +21,8 @@
     "rollup-plugin-livereload": "^1.0.0",
     "rollup-plugin-svelte": "^5.0.3",
     "rollup-plugin-terser": "^5.1.2",
+    "sirv-cli": "^1.0.0-next.2",
     "svelte": "^3.16.7"
   },
-  "dependencies": {
-    "sirv-cli": "^0.4.4"
-  }
+  "dependencies": {}
 }
