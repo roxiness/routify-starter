@@ -8,11 +8,21 @@ Alternatively, you can git clone this repo instead.
 --------------------------------------------------
 
 ### Usage
-**Development** ``npm run dev``
+``npm run dev`` **Development** 
 
-**Dev + codesplitting** ``npm run dev:split``
+``npm run build`` **Build** 
 
-**Build** ``npm run build``
+``npm run export`` **Export static pages with app fallback** 
+
+
+### Code splitting
+``npm run dev:split``
+``npm run build:split``
+``npm run export:split``
+
+
+
+
 
 --------------------------------------------------
 
