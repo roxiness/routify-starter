@@ -2,15 +2,17 @@
   "name": "svelte-app",
   "version": "1.0.0",
   "scripts": {
-    "build": "rollup -c",
-    "buildnow": "npm run build && cd public && now --prod",
-    "dev": "run-p watch:routify watch:rollup",
-    "dev:split": "run-p watch:routify:split watch:rollup",
+    "dev": "run-p routify watch:rollup",
+    "dev:split": "run-p \"watch:routify -- -D\" watch:rollup",
+    "build": "npm run routify -b && rollup -c",
+    "build:split": "npm run routify -- -b -D && rollup -c",
+    "export": "npm run build && routify export",
+    "export:split": "npm run build:split && routify export",
     "watch:rollup": "rollup -c -w",
-    "watch:routify": "routify",
-    "watch:routify:split": "routify -D",
-    "start": "sirv public --single",
-    "start:split": "sirv public --single dynamic.html"
+    "routify": "routify",
+    "start": "sirv public --single __app.html",
+    "serve:export": "sirv export --single __app.html",
+    "buildnow": "npm run build && cd public && now --prod"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^6.0.0",
