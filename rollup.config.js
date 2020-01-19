@@ -14,7 +14,7 @@ export default {
 		sourcemap: true,
 		name: 'app',
 		format: split ? 'esm' : 'iife',
-		[split ? 'dir' : 'file']: split ? 'public/build' : 'public/build/bundle.js'
+		[split ? 'dir' : 'file']: split ? 'public/build' : 'public/build/main.js'
 	},
 	plugins: [
 		svelte({
@@ -60,11 +60,10 @@ function serve() {
 
 	return {
 		writeBundle() {
-			const script = !split ? 'start' : 'start:split'
 			if (!started) {
 				started = true;
 
-				require('child_process').spawn('npm', ['run', script, '--', '--dev'], {
+				require('child_process').spawn('npm', ['run', 'start', '--', '--dev'], {
 					stdio: ['ignore', 'inherit', 'inherit'],
 					shell: true
 				});

@@ -1,7 +1,13 @@
 {
     "name": "routify-starter",
-    "routes": [{
-        "src": "/[^\\.]+",
-        "dest": "/index.html"
-    }]
+    "routes": [
+        {
+            "src": "/",
+            "dest": "/__app.html"
+        },
+        {
+            "src": "/[^\\.]+",
+            "dest": "/__app.html"
+        }
+    ]
 }
