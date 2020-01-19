@@ -2,7 +2,9 @@
   import { url } from "@sveltech/routify";
 </script>
 
-<h1>Feed</h1>
+<div style="padding-top: 20px">
+  <h1>Feed</h1>
+</div>
 
 {#each new Array(10) as item, id}
   <a class="card" href={$url('../:id', { id })}>

@@ -16,6 +16,5 @@
 
 <!-- routify:options index=1 -->
 <main>
-  <br />
   <slot />
 </main>
