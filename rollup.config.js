@@ -4,9 +4,18 @@ import commonjs from 'rollup-plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import { config } from '@sveltech/routify'
+import copy from 'rollup-plugin-copy'
+import rimraf from 'rimraf'
+
 
 const split = config.dynamicImports
 const production = !process.env.ROLLUP_WATCH;
+
+const distDir = 'app/dist'
+const buildDir = 'app/dist/build'
+const publicDir = 'app/public'
+
+rimraf.sync(distDir)
 
 export default {
 	input: 'src/main.js',
@@ -14,16 +23,17 @@ export default {
 		sourcemap: true,
 		name: 'app',
 		format: split ? 'esm' : 'iife',
-		[split ? 'dir' : 'file']: split ? 'public/build' : 'public/build/main.js'
+		[split ? 'dir' : 'file']: split ? `${buildDir}` : `${buildDir}/main.js`
 	},
 	plugins: [
+		copy({ targets: [{ src: publicDir+'/**', dest: distDir }] }),
 		svelte({
 			// enable run-time checks when not in production
 			dev: !production,
 			// we'll extract any component CSS out into
 			// a separate file — better for performance
 			css: css => {
-				css.write('public/build/bundle.css');
+				css.write(`${buildDir}/bundle.css`);
 			}
 		}),
 
@@ -44,14 +54,15 @@ export default {
 
 		// Watch the `public` directory and refresh the
 		// browser on changes when not in production
-		!production && livereload('public'),
+		!production && livereload(distDir),
 
 		// If we're building for production (npm run build
 		// instead of npm run dev), minify
 		production && terser()
 	],
 	watch: {
-		clearScreen: false
+		clearScreen: false,
+		include: ['src/**', 'app/**']
 	}
 };
 

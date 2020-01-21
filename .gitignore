@@ -1,5 +1,5 @@
 /node_modules/
-/public/build/
-/export
+/app/node_modules
+/app/dist
 .DS_Store
-.history
+**/.history
