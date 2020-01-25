@@ -1,0 +1,15 @@
+
+[build]
+  publish = "../../../dist/"
+  functions = "functions/"
+
+[[redirects]]
+  # SSR and SPA
+  from = "/*"
+  to = "/.netlify/functions/get-html"
+  status = 404
+  
+  # SPA only
+  # from = "/*"
+  # to = "/__app.html"
+  # status = 404

@@ -1,0 +1,18 @@
+{
+  "name": "take-screenshot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "take-screenshot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chrome-aws-lambda": "^2.0.2",
+    "puppeteer-core": "^2.0.0"
+  },
+  "devDependencies": {
+    "puppeteer": "^2.0.0"
+  }
+}
