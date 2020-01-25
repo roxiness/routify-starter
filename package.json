@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "concurrently routify \"rollup -c -w\"",
-    "dev:split": "concurrently \"routify -- -D\" \"rollup -c -w\"",
+    "dev:split": "concurrently \"routify -D\" \"rollup -c -w\"",
     "build": "routify -bD && rollup -c && routify export",
-    "start": "sirv app/dist --single __app.html",
+    "start": "sirv dist --single __app.html",
     "start:app": "cd app && npm run dev",
     "deploy:now": "cd app/dist && npx now",
     "deploy:aws": "cd app/dist && npx now"

@@ -11,14 +11,16 @@ import rimraf from 'rimraf'
 const split = config.dynamicImports
 const production = !process.env.ROLLUP_WATCH;
 
-const distDir = 'app/dist'
-const buildDir = 'app/dist/build'
-const publicDir = 'app/public'
+const distDir = 'dist'
+const buildDir = 'dist/build'
+const publicDir = 'src/assets'
+const appDir = 'src'
+const serverDir = 'server'
 
 rimraf.sync(distDir)
 
 export default {
-	input: 'src/main.js',
+	input: `${appDir}/main.js`,
 	output: {
 		sourcemap: true,
 		name: 'app',
@@ -26,10 +28,11 @@ export default {
 		[split ? 'dir' : 'file']: split ? `${buildDir}` : `${buildDir}/main.js`
 	},
 	plugins: [
-		copy({ targets: [{ src: publicDir+'/**', dest: distDir }] }),
+		copy({ targets: [{ src: publicDir + '/**', dest: distDir }] }),
 		svelte({
 			// enable run-time checks when not in production
 			dev: !production,
+			hydratable: true,
 			// we'll extract any component CSS out into
 			// a separate file — better for performance
 			css: css => {
@@ -61,10 +64,36 @@ export default {
 		production && terser()
 	],
 	watch: {
-		clearScreen: false,
-		include: ['src/**', 'app/**']
+		clearScreen: false
 	}
-};
+}
+//  {
+// 	input: 'src/server.js',
+// 	output: {
+// 		sourcemap: true,
+// 		name: 'routify server',
+// 		format: 'cjs',
+// 		'file': `${serverDir}/main.js`
+// 	},
+// 	plugins: [
+// 		copy({ targets: [{ src: publicDir + '/**', dest: distDir }] }),
+// 		svelte({
+// 			// enable run-time checks when not in production
+// 			dev: !production,
+// 			// we'll extract any component CSS out into
+// 			// a separate file — better for performance
+// 			immutable: true,
+// 			hydratable: true,
+// 			generate: 'ssr',
+// 		}),
+// 		resolve(),
+// 		production && terser()
+		
+// 	],
+// 	watch: {
+// 		clearScreen: false
+// 	}
+// }
 
 function serve() {
 	let started = false;
