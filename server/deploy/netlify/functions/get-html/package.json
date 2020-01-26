@@ -1,8 +1,8 @@
 {
-  "name": "take-screenshot",
+  "name": "get-html",
   "version": "1.0.0",
   "description": "",
-  "main": "take-screenshot.js",
+  "main": "get-html.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

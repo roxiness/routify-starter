@@ -67,33 +67,6 @@ export default {
 		clearScreen: false
 	}
 }
-//  {
-// 	input: 'src/server.js',
-// 	output: {
-// 		sourcemap: true,
-// 		name: 'routify server',
-// 		format: 'cjs',
-// 		'file': `${serverDir}/main.js`
-// 	},
-// 	plugins: [
-// 		copy({ targets: [{ src: publicDir + '/**', dest: distDir }] }),
-// 		svelte({
-// 			// enable run-time checks when not in production
-// 			dev: !production,
-// 			// we'll extract any component CSS out into
-// 			// a separate file — better for performance
-// 			immutable: true,
-// 			hydratable: true,
-// 			generate: 'ssr',
-// 		}),
-// 		resolve(),
-// 		production && terser()
-		
-// 	],
-// 	watch: {
-// 		clearScreen: false
-// 	}
-// }
 
 function serve() {
 	let started = false;
