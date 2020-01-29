@@ -6,11 +6,8 @@
   let clientWidth
   $: urlsWithElem = linkElems.map((elem, i) => ({ ...urls[i], elem }));
   $: activeUrl = urlsWithElem.find(({active}) => active)
-  $: if (overlay && clientWidth) copyDimensions(activeUrl.elem, overlay);
+  $: if (overlay && clientWidth && activeUrl) copyDimensions(activeUrl.elem, overlay);
   $: color = activeUrl && activeUrl.color
-
-  $: console.log('cw', clientWidth)
-  $: console.log('source width', SourceBuffer.clientWidth)
 
   function copyDimensions(source, target) {
     target.style.left = source.offsetLeft + "px";
