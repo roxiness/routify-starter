@@ -2,13 +2,12 @@
   "name": "svelte-app",
   "version": "1.0.0",
   "scripts": {
-    "dev": "concurrently routify \"rollup -c -w\"",
-    "dev:split": "concurrently \"routify -D\" \"rollup -c -w\"",
-    "build": "routify -bD && rollup -c && routify export",
+    "dev": "routify",
+    "dev:split": "routify --dynamic-imports",
+    "build": "routify -b && rollup -c && routify -bD && rollup -c --environment BUILDING && routify export",
     "start": "sirv dist --single __app.html",
-    "start:app": "cd app && npm run dev",
-    "deploy:now": "cd app/dist && npx now",
-    "deploy:aws": "cd app/dist && npx now"
+    "deploy:now": "cd scripts/now && node build && npx now",
+    "rollup": "rollup -cw"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^6.0.0",
