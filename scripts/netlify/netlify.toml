@@ -1,12 +1,12 @@
 
 [build]
-  publish = "../../../dist/"
-  functions = "functions/"
+  publish = "./public/"
+  functions = "api/"
 
 [[redirects]]
   # SSR and SPA
   from = "/*"
-  to = "/.netlify/functions/get-html"
+  to = "/.netlify/functions/ssr"
   status = 404
   
   # SPA only

@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "build": "node build"
+  },
+  "dependencies": {
+    "@sveltech/ssr": "0.0.3",
+    "fs-extra": "^8.1.0"
+  }
+}

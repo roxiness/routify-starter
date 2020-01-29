@@ -9,8 +9,15 @@
 	<link rel='icon' type='image/png' href='/favicon.png'>
 	<link rel='stylesheet' href='/global.css'>
 	<link rel='stylesheet' href='/build/bundle.css'>
+
+	<!-- Dynamic imports. Delete for bundled apps. -->
 	<script type="module" defer src="https://unpkg.com/dimport@1.0.0/dist/index.mjs?module" data-main="/build/main.js"></script>
 	<script nomodule defer src="https://unpkg.com/dimport/nomodule" data-main="/build/main.js"></script>
+
+	<!-- Bundled app. Delete for dynamic imports. -->
+	<script defer src="/build/main.js" ></script>
+
+
 </head>
 
 <body>
