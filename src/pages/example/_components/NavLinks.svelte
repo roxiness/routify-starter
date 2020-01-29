@@ -9,7 +9,8 @@
     ["./aliasing", "Aliasing"],
     ["./404", "404"],
     ["./api", "Api"],
-    ["./app", "App"]
+    ["./app", "App"],
+    ["./transitions/tabs", "Transitions"]
   ];
 </script>
 
