@@ -8,27 +8,23 @@ import copy from 'rollup-plugin-copy'
 import rimraf from 'rimraf'
 
 
-const split = config.dynamicImports
 const production = !process.env.ROLLUP_WATCH;
 
-const distDir = 'dist'
-const buildDir = 'dist/build'
-const publicDir = 'src/assets'
-const appDir = 'src'
-const serverDir = 'server'
+const { distDir, staticDir, sourceDir, dynamicImports: split } = config
+const buildDir = `${distDir}/build`
 
-rimraf.sync(distDir)
+if (!process.env.BUILDING) rimraf.sync(distDir)
 
 export default {
-	input: `${appDir}/main.js`,
-	output: {
+	input: `${sourceDir}/main.js`,
+	output: [{
 		sourcemap: true,
 		name: 'app',
 		format: split ? 'esm' : 'iife',
-		[split ? 'dir' : 'file']: split ? `${buildDir}` : `${buildDir}/main.js`
-	},
+		[split ? 'dir' : 'file']: split ? `${buildDir}` : `${buildDir}/bundle.js`
+	}],
 	plugins: [
-		copy({ targets: [{ src: publicDir + '/**', dest: distDir }] }),
+		copy({ targets: [{ src: staticDir + '/**', dest: distDir }] }),
 		svelte({
 			// enable run-time checks when not in production
 			dev: !production,
