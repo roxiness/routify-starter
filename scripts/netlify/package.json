@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "build": "node build"
+    "build": "node build",
+    "deploy": "npm run build && npx netlify deploy"
   },
   "dependencies": {
     "@sveltech/ssr": "0.0.3",
