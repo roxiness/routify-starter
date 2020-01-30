@@ -1,6 +1,7 @@
 <script>
   import { url } from "@sveltech/routify";
   import NavLinks from "./_components/NavLinks.svelte";
+  import RenderStatus from "./_components/RenderStatus.svelte";
 </script>
 
 <style>
@@ -38,6 +39,7 @@ This ensures that the example app doesn't inherit
 <div class="example">
   <div class="nav">
     <NavLinks />
+    <RenderStatus />
   </div>
   <div class="main">
     <slot>
