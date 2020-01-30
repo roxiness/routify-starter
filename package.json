@@ -6,6 +6,7 @@
     "dev:split": "routify --dynamic-imports",
     "build": "routify -b && rollup -c && routify -bD && rollup -c --environment BUILDING && routify export",
     "start": "sirv dist --single __app.html",
+    "preview-build": "cd scripts/server && node index",
     "deploy:now": "cd scripts/now && npm run deploy",
     "deploy:netlify": "cd scripts/netlify && npm run deploy",
     "rollup": "rollup -cw"
