@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "build": "dir"
+    "build": "echo \"dummy function\"",
+    "deploy": "node build && npx now"
   },
   "dependencies": {
     "@sveltech/ssr": "0.0.3",
