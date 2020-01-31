@@ -4,7 +4,7 @@
     "deploy": "npm run build && npx netlify deploy"
   },
   "dependencies": {
-    "@sveltech/ssr": "0.0.3",
+    "@sveltech/ssr": "0.0.8",
     "fs-extra": "^8.1.0"
   }
 }

@@ -4,7 +4,7 @@
     "deploy": "node build && npx now"
   },
   "dependencies": {
-    "@sveltech/ssr": "^0.0.6",
+    "@sveltech/ssr": "^0.0.8",
     "fs-extra": "^8.1.0"
   }
 }
