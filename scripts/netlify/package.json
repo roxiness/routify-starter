@@ -7,6 +7,6 @@
   },
   "dependencies": {
     "fs-extra": "^8.1.0",
-    "netlify": "^3.0.0"
+    "netlify-cli": "^2.30.0"
   }
 }
