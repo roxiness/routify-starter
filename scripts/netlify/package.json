@@ -2,7 +2,7 @@
   "scripts": {
     "build": "npm run build:app && npm run build:netlify",
     "build:app": "cd ../.. && npm i && npm run build",
-    "build:netlify": "node build && netlify build",
+    "build:netlify": "npm i && node build && netlify build",
     "deploy": "npm run build:netlify && netlify deploy"
   },
   "dependencies": {
