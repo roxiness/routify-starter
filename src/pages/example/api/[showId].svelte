@@ -6,7 +6,7 @@
   $: updateShow(showId);
 
   function updateShow(id) {
-    fetch(`http://api.tvmaze.com/shows/${id}`)
+    fetch(`https://api.tvmaze.com/shows/${id}`)
       .then(response => response.json())
       .then(json => {
         series = json;
