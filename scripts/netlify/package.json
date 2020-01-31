@@ -2,10 +2,11 @@
   "scripts": {
     "build": "npm run build:app && npm run build:netlify",
     "build:app": "cd ../.. && npm i && npm run build",
-    "build:netlify": "node build",
-    "deploy": "npm run build:netlify && npx netlify deploy"
+    "build:netlify": "node build && netlify build",
+    "deploy": "npm run build:netlify && netlify deploy"
   },
   "dependencies": {
-    "fs-extra": "^8.1.0"
+    "fs-extra": "^8.1.0",
+    "netlify": "^3.0.0"
   }
 }
