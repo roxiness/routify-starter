@@ -1,10 +1,8 @@
 {
   "scripts": {
-    "build": "node build",
-    "deploy": "npm run build && npx netlify deploy"
+    "deploy": "node build && npx netlify build && npx netlify deploy"
   },
   "dependencies": {
-    "@sveltech/ssr": "0.0.8",
     "fs-extra": "^8.1.0"
   }
 }
