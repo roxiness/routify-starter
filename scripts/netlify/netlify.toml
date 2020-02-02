@@ -7,7 +7,7 @@
   # SSR and SPA
   from = "/*"
   to = "/.netlify/functions/ssr"
-  status = 404
+  status = 200
   
   # SPA only
   # from = "/*"
