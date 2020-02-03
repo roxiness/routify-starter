@@ -31,5 +31,5 @@
 </style>
 
 {#if show}
-  <div transition:fade class="box">source: {lastRender}</div>
+  <div transition:fade|local class="box">source: {lastRender}</div>
 {/if}
