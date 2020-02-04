@@ -1,6 +1,6 @@
 
 [build]
-  publish = "./public/"
+  publish = "public/"
   functions = "api/"
 
 [[redirects]]
@@ -12,4 +12,4 @@
   # SPA only
   # from = "/*"
   # to = "/__app.html"
-  # status = 404
+  # status = 200
