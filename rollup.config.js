@@ -12,6 +12,7 @@ const production = !process.env.ROLLUP_WATCH;
 
 const { distDir, staticDir, sourceDir, dynamicImports: split } = config
 const buildDir = `${distDir}/build`
+const template = staticDir + (split ? '/__dynamic.html' : '/__bundled.html')
 
 if (!process.env.BUILDING) rimraf.sync(distDir)
 
@@ -24,7 +25,12 @@ export default {
 		[split ? 'dir' : 'file']: split ? `${buildDir}` : `${buildDir}/bundle.js`
 	}],
 	plugins: [
-		copy({ targets: [{ src: staticDir+'/*', dest: distDir }] }),
+		copy({
+			targets: [
+				{ src: staticDir + '/*', dest: distDir },
+				{ src: template, dest: distDir, rename: '__app.html' }
+			]
+		}),
 		svelte({
 			// enable run-time checks when not in production
 			dev: !production,
