@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "routify",
     "dev:split": "routify --dynamic-imports",
-    "build": "routify -b && rollup -c && routify -bD && rollup -c --environment BUILDING && routify export",
+    "build": "routify -b && rollup -c && routify -bD && rollup -c && routify export",
     "start": "sirv dist --single __app.html",
     "preview-build": "cd scripts/server && node index",
     "deploy:now": "cd scripts/now && npm run deploy",
@@ -15,7 +15,6 @@
     "@rollup/plugin-node-resolve": "^6.0.0",
     "@sveltech/routify": "next",
     "concurrently": "^5.0.2",
-    "rimraf": "^3.0.0",
     "rollup": "^1.12.0",
     "rollup-plugin-commonjs": "^10.0.0",
     "rollup-plugin-copy": "^3.2.1",
@@ -23,7 +22,9 @@
     "rollup-plugin-svelte": "^5.0.3",
     "rollup-plugin-terser": "^5.1.2",
     "sirv-cli": "^1.0.0-next.2",
-    "svelte": "^3.16.7"
+    "svelte": "^3.16.7",
+    "del": "^5.1.0",
+    "ppid-changed": "^1.0.1"
   },
   "dependencies": {}
 }

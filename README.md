@@ -7,28 +7,27 @@ Alternatively, you can git clone this repo instead.
 
 --------------------------------------------------
 
-### Usage
-``npm run dev`` **Development** 
+### Npm tasks
+``dev`` **Development** 
 
-``npm run build`` **Build** 
+``dev:split`` **Development (with code splitting)** 
 
-``npm run export`` **Export static pages with app fallback** 
+``build`` **Build a bundled app for SSR + prerendering and a dynamic app for code splitting**
 
+``export`` **Export static pages (with app fallback)** 
 
-### Code splitting
-``npm run dev:split``
-``npm run build:split``
-``npm run export:split``
+``preview-build`` **Run after build to preview app**
 
-
-
-
+``deploy:*`` **Deploy to netlify or now**
 
 --------------------------------------------------
 
 ### Production
-Please make sure that url rewrite is enabled on our server.
-- For apps without code splitting redirect to index.html
-- For apps with code splitting redirect to dynamic.html
+For SPA or SSR apps please make sure that url rewrite is enabled on the server.
+For SPA redirect to __app.html.
+For SSR redirect to the lambda function or express server. 
 
-###### [Important] Routes are currently not regenerated on build scripts, so make sure you've generated the routes first before you run the build script.
+--------------------------------------------------
+
+### Todo
+Improve documentation.
