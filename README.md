@@ -22,6 +22,15 @@ Alternatively, you can git clone this repo instead.
 
 --------------------------------------------------
 
+### SSR and prerendering
+SSR and prerendering are in included in the default build process.
+Npm run deploy:(now|netlify) will deploy the app with SSR and prerendering included.
+To render async data, call the $ready() helper whenever your data is ready.
+If $ready() is present, rendering will be delayed till the function has been called.
+Otherwise it will be rendered instantly.
+
+See ``src/pages/example/api/[showId].svelte`` for an example.
+
 ### Production
 For SPA or SSR apps please make sure that url rewrite is enabled on the server.
 For SPA redirect to __app.html.
@@ -30,4 +39,4 @@ For SSR redirect to the lambda function or express server.
 --------------------------------------------------
 
 ### Todo
-Improve documentation.
+Improve documentation (feedback much appreciated).
