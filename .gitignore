@@ -1,5 +1,5 @@
-/node_modules/
-/public/build/
-
+node_modules/
+dist/
 .DS_Store
-.history
+**/.history
+**/package-lock.json

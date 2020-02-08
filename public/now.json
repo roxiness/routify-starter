@@ -1,7 +1,0 @@
-{
-    "name": "routify-starter",
-    "routes": [{
-        "src": "/[^\\.]+",
-        "dest": "/index.html"
-    }]
-}

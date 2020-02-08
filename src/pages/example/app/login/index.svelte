@@ -5,8 +5,6 @@
   let username = "anything";
   let password = "goes";
 
-  $: console.log(window.location.href);
-
   function login() {
     $user = { username };
     /** We want to $goto our current location.

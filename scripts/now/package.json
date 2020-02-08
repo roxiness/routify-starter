@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "build": "echo \"dummy function\"",
+    "deploy": "node build && npx now"
+  },
+  "dependencies": {
+    "@sveltech/ssr": "^0.0.8",
+    "fs-extra": "^8.1.0"
+  }
+}
