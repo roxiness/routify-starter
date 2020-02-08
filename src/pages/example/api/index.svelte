@@ -2,7 +2,6 @@
   import { url } from "@sveltech/routify";
   export let scoped;
   const { movies } = scoped;
-  console.log(movies);
 </script>
 
 <div style="text-align: center">
