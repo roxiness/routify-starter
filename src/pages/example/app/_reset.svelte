@@ -13,7 +13,7 @@
   }
 </script>
 
-<a href={$url('../')}>Back to examples</a>
+<a href={$url('example-app')}>Back to examples</a>
 <a href={$url('./')}>Home</a>
 <a href={$url('./about')}>About</a>
 <button on:click={logout} style="position: absolute; right: 24px">
