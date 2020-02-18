@@ -29,7 +29,7 @@ To render async data, call the $ready() helper whenever your data is ready.
 If $ready() is present, rendering will be delayed till the function has been called.
 Otherwise it will be rendered instantly.
 
-See ``src/pages/example/api/[showId].svelte`` for an example.
+See [src/pages/example/api/[showId].svelte](https://github.com/sveltech/routify-starter/blob/master/src/pages/example/api/%5BshowId%5D.svelte) for an example.
 
 ### Production
 For SPA or SSR apps please make sure that url rewrite is enabled on the server.
