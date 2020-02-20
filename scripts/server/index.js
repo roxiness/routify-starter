@@ -1,17 +1,15 @@
-const express = require('express')
-const { ssr } = require('@sveltech/ssr')
-const app = express()
+const { existsSync } = require('fs')
+const { spawnSync } = require('child_process')
 
-const port = 5000
-const distDir = '../../dist'
-const bundleDir = `${distDir}/build/bundle.js`
-const templateDir = `${distDir}/__app.html`
+if(!existsSync('node_modules')){
+    console.log('[Routify] Installing preview server')
+    spawnSync('npm', ['i'], {
+        stdio: ['ignore', 'inherit', 'inherit'],
+        shell: true
+    });
+}
 
-app.use(express.static(distDir))
-
-app.get('*', async (req, res) => {
-    const HTML = await ssr(templateDir, bundleDir, req.url)
-    res.send(HTML)
+spawnSync('node', ['server'], {
+    stdio: ['ignore', 'inherit', 'inherit'],
+    shell: true
 })
-
-app.listen(port)

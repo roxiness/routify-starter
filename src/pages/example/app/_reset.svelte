@@ -13,13 +13,15 @@
   }
 </script>
 
-<a href={$url('../')}>Back to examples</a>
-<a href={$url('./')}>Home</a>
-<a href={$url('./about')}>About</a>
-<button on:click={logout} style="position: absolute; right: 24px">
-  Logout
-</button>
+{#if $user}
+  <a href={$url('example-app')}>Back to examples</a>
+  <a href={$url('./')}>Home</a>
+  <a href={$url('./about')}>About</a>
+  <button on:click={logout} style="position: absolute; right: 24px">
+    Logout
+  </button>
 
-<slot>
-  <!-- optional fallback -->
-</slot>
+  <slot>
+    <!-- optional fallback -->
+  </slot>
+{/if}
