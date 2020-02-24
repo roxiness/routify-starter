@@ -2,4 +2,3 @@ node_modules/
 dist/
 .DS_Store
 **/.history
-**/package-lock.json
