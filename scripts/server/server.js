@@ -2,7 +2,7 @@ const express = require('express')
 const { ssr } = require('@sveltech/ssr')
 const app = express()
 
-const port = 5000
+const {PORT = 5000} = process.env
 const distDir = '../../dist'
 const bundleDir = `${distDir}/build/bundle.js`
 const templateDir = `${distDir}/__app.html`
@@ -16,5 +16,5 @@ app.get('*', async (req, res) => {
     res.send(HTML)
 })
 
-console.log('Serving on http://localhost:' + port)
-app.listen(port)
+console.log('Serving on http://localhost:' + PORT)
+app.listen(PORT)
