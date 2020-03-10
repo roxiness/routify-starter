@@ -14,7 +14,6 @@ Alternatively, you can clone this repo.
 |-----------------|------------------------------------------------------------------------------------|
 | `dev`            | Development (to test dynamic imports use ``npm run dev -- -D``)                                                    |
 | `build`          | Build a bundled app for SSR + prerendering and a dynamic app for code splitting   |
-| `export`         | Export static pages (with app fallback)                                           |
 | `preview-build`  | Run after build to preview app                                                    |
 | `deploy:*`       | Deploy to netlify or now                                                          |
 
