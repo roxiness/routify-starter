@@ -21,7 +21,7 @@ Alternatively, you can clone this repo.
 
 SSR and pre-rendering are included in the default build process.
 
-`mpm run deploy:(now|netlify)` will deploy the app with SSR and prerendering included.
+`npm run deploy:(now|netlify)` will deploy the app with SSR and prerendering included.
 
 To render async data, call the `$ready()` helper whenever your data is ready.
 
