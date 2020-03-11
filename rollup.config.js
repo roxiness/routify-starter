@@ -27,8 +27,12 @@ export default {
 		[split ? 'dir' : 'file']: split ? `${buildDir}` : `${buildDir}/bundle.js`
 	}],
 	plugins: [
-		copy({ targets: [{ src: staticDir + '/*', dest: distDir }] }),
-		copy({ targets: [{ src: template, dest: distDir, rename: '__app.html' }] }),
+		copy({
+			targets: [
+			  { src: staticDir + '/*', dest: distDir },
+			  { src: template, dest: distDir, rename: '__app.html' },
+			], copyOnce: true
+		  }),
 		svelte({
 			// enable run-time checks when not in production
 			dev: !production,
