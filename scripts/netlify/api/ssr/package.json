@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@sveltech/ssr": "0.0.8"
+    "@sveltech/ssr": "0.0.9"
   }
 }
