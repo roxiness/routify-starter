@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@sveltech/ssr": "0.0.8",
+    "@sveltech/ssr": "0.0.9",
     "express": "^4.17.1"
   }
 }
