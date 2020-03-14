@@ -6,7 +6,6 @@
         },
         {
             "src": "/.*",
-            "status": 404,
             "dest": "/api/ssr.js"
         }
     ]
