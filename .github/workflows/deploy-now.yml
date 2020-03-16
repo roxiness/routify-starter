@@ -26,4 +26,9 @@ jobs:
     - name: build
       run: npm run build
     - name: deploy
-      run: npm run deploy:now -- -- --token ${{ secrets.NOW_TOKEN }}
+      run: | 
+        cd scripts/now
+        node build
+        npx now --token ${{ secrets.NOW_TOKEN }}
+
+      #run: npm run deploy:now -- -- --token ${{ secrets.NOW_TOKEN }}
