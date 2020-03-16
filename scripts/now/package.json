@@ -1,7 +1,8 @@
 {
   "scripts": {
-    "build": "echo \"dummy function\"",
-    "deploy": "node build && npx now"
+    "build": "node build",
+    "build:app": "cd ../.. && npm i && npm run build",
+    "deploy": "npm run build && npx now"
   },
   "dependencies": {
     "@sveltech/ssr": "^0.0.9",
