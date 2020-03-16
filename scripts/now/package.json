@@ -1,6 +1,7 @@
 {
   "scripts": {
     "build": "echo \"dummy build\"",
+    "build:app": "cd ../.. && npm run build",
     "deploy": "node build && npx now"
   },
   "dependencies": {
