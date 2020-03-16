@@ -8,27 +8,22 @@ on:
 
 jobs:
   deploy:
-
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [12.x]
-
     steps:
-    - uses: actions/checkout@master
-    - name: Use Node.js ${{ matrix.node-version }}
+    - uses: actions/checkout@master    
       uses: actions/setup-node@v1
       with:
-        node-version: ${{ matrix.node-version }}
-    - name: install
-      run: npm install
+        node-version: 12
     - name: build
-      run: npm run build
-    - name: deploy
       run: | 
+        npm install
         cd scripts/now
         node build
-        npx now -t ${{ secrets.NOW_TOKEN }}
-
+    - uses: amondnet/now-deployment@v2
+        with:
+          zeit-token: ${{ secrets.NOW_TOKEN }} # Required
+          #now-args: '--prod' #Optional
+          now-org-id: ${{ secrets.NOW_ORG_ID}}  #Required
+          now-project-id: ${{ secrets.NOW_PROJECT_ID}} #Required 
+          working-directory: ./scripts/now
       #run: npm run deploy:now -- -- --token ${{ secrets.NOW_TOKEN }}
