@@ -4,10 +4,7 @@
 name: Node.js CI
 
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+  [push]
 
 jobs:
   deploy:
@@ -16,16 +13,17 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [10.x, 12.x]
+        node-version: [12.x]
 
     steps:
-    - uses: actions/checkout@vmaster
+    - uses: actions/checkout@master
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: npm build, deploy
-      run: |
-        npm install
-        npm run build
-        npm run deploy:now
+    - name: install
+      run: npm install
+    - name: build
+      run: npm run build
+    - name: deploy
+      run: npm run deploy:now
