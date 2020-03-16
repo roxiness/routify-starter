@@ -20,10 +20,9 @@ jobs:
         cd scripts/now
         node build
     - uses: amondnet/now-deployment@v2
-        with:
-          zeit-token: ${{ secrets.NOW_TOKEN }} # Required
-          #now-args: '--prod' #Optional
-          now-org-id: ${{ secrets.NOW_ORG_ID}}  #Required
-          now-project-id: ${{ secrets.NOW_PROJECT_ID}} #Required 
-          working-directory: ./scripts/now
-      #run: npm run deploy:now -- -- --token ${{ secrets.NOW_TOKEN }}
+      with:
+        zeit-token: ${{ secrets.NOW_TOKEN }} # Required
+        #now-args: '--prod' #Optional
+        now-org-id: ${{ secrets.NOW_ORG_ID}}  #Required
+        now-project-id: ${{ secrets.NOW_PROJECT_ID}} #Required 
+        working-directory: ./scripts/now
