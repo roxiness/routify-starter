@@ -1,14 +1,18 @@
+<script>
+  import base64Logo from "./_components/assets/logo.js";
+</script>
+
 <!-- routify:option name="example-app" -->
 
 <div style="width: 100%; text-align: center; margin-top: 4rem;">
-  <img src="/example/Routify-t.png" alt="" />
+  <img src="data:image/png;base64, {base64Logo}" alt="logo" style="padding-bottom: 128px" />
   <div>
     <b>Guide:</b>
     <br />
     <a href="https://routify.now.sh">https://routify.now.sh</a>
   </div>
-  
-    <br />
+
+  <br />
   <div>
     <b>This template:</b>
     <br />

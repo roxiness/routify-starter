@@ -1,6 +1,9 @@
 <script>
     import { url } from '@sveltech/routify'
+  import base64Kevin from "../_components/assets/kevin.js";
 </script>
+
+
 
 <style>
   .center {
@@ -12,5 +15,6 @@
   }
 </style>
 
-<img src="/example/kevin.gif" alt="" class="center" />
+<img src="data:image/png;base64, {base64Kevin}" alt="KEVIN!" class="center" />
+
 <a href={$url('../../')}>Go back</a>
