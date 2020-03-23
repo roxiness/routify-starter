@@ -6,8 +6,7 @@
 
 <style>
   .example {
-    background-color: #faaca8;
-    background-image: linear-gradient(19deg, #faaca8 0%, #ddd6f3 100%);
+    background-color: #ffeffe;
     background-attachment: fixed;
     position: fixed;
     top: 0;
