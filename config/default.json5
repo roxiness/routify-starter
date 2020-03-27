@@ -61,5 +61,5 @@
     ********************/
 
     /* Run task after routes have been generated (only in watch  mode) */
-    childProcess: "rollup -c -w"
+    // childProcess: "rollup -c -w"
 }
