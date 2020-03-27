@@ -34,7 +34,7 @@
   .backlink {
     position: absolute;
     left: 16px;
-    color: white;
+    color: #C848C1;
     font-weight: bold;
   }
   .active {
