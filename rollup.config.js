@@ -6,33 +6,57 @@ import { terser } from 'rollup-plugin-terser';
 import { getConfig } from '@sveltech/routify'
 import copy from 'rollup-plugin-copy'
 import del from 'del'
-import ppidChanged from 'ppid-changed'
 
-export default new Promise(async (res) => {
+export default (async () => {
 	const config = await getConfig({ unreadOnly: true })
+	const buildDir = `${config.distDir}/build`
+	const options = { ...config, port: 5000, buildDir }
 
+	const distDir = 'dist'
+
+	console.log({config})
+	del.sync(config.distDir + '/**')
+
+
+	const bundledConfig = {
+		inlineDynamicImports: true,
+		output: [
+			{
+				sourcemap: true,
+				name: 'app',
+				format: 'iife',
+				file: `${buildDir}/bundle.js`
+			}
+		],
+	}
+	const dynamicConfig = {
+		output: [
+			{
+				sourcemap: true,
+				name: 'app',
+				format: 'esm',
+				dir: buildDir
+			},
+		]
+	}
+
+	return [
+		configFactory(bundledConfig, options),
+		configFactory(dynamicConfig, { ...options, port: 5001, hotPort: 35730, dynamic: true })
+	]
+})()
+
+
+function configFactory(config = {}, { port, distDir, buildDir, sourceDir, staticDir, hotPort = 35729, dynamic }) {
 	const production = !process.env.ROLLUP_WATCH;
-	const { distDir, staticDir, sourceDir, dynamicImports: split } = config
-	const buildDir = `${distDir}/build`
-	const template = staticDir + (split ? '/__dynamic.html' : '/__bundled.html')
-
-	// Delete the dist folder, but not between build steps
-	// ("build": "build-step-1 && build-step-2 && etc")
-	if (ppidChanged()) del.sync(distDir + '/**')
-
-	res({
+	const defaultConfig = {
 		input: `${sourceDir}/main.js`,
-		output: [{
-			sourcemap: true,
-			name: 'app',
-			format: split ? 'esm' : 'iife',
-			[split ? 'dir' : 'file']: split ? `${buildDir}` : `${buildDir}/bundle.js`
-		}],
 		plugins: [
 			copy({
 				targets: [
-					{ src: staticDir + '/*', dest: distDir },
-					{ src: template, dest: distDir, rename: '__app.html' },
+					{ src: staticDir + '/**/!(__index.html)', dest: distDir },
+					{ src: `${staticDir}/__index.html`, dest: distDir, rename: '__dynamic.html', transform: dynamicTransform },
+					{ src: `${staticDir}/__index.html`, dest: distDir, rename: '__bundled.html', transform: bundledTransform },
 				], copyOnce: true
 			}),
 			svelte({
@@ -59,11 +83,11 @@ export default new Promise(async (res) => {
 
 			// In dev mode, call `npm run start` once
 			// the bundle has been generated
-			!production && serve(),
+			!production && serve(port, distDir, dynamic),
 
 			// Watch the `public` directory and refresh the
 			// browser on changes when not in production
-			!production && livereload(distDir),
+			!production && livereload({ watch: distDir, port: hotPort }),
 
 			// If we're building for production (npm run build
 			// instead of npm run dev), minify
@@ -72,22 +96,39 @@ export default new Promise(async (res) => {
 		watch: {
 			clearScreen: false
 		}
-	})
-})
+	}
+	return { ...defaultConfig, ...config }
+}
 
-function serve() {
+function serve(port = 5000, distDir, dynamic) {
 	let started = false;
+	const file = dynamic ? '__dynamic.html' : '__bundled.html'
+	// const path = `${distDir}/${file}`
+	console.log('path', file)
 
 	return {
 		writeBundle() {
 			if (!started) {
 				started = true;
 
-				require('child_process').spawn('npm', ['run', 'start', '--', '--dev'], {
+				require('child_process').spawn('npm', ['run', 'start', `-- ${file} --dev --port ${port}`], {
 					stdio: ['ignore', 'inherit', 'inherit'],
 					shell: true
 				});
 			}
 		}
 	};
+}
+
+function bundledTransform(contents) {
+	return contents.toString().replace('__SCRIPT__', `	
+		<script defer src="/build/bundle.js" ></script>
+	`)
+}
+
+function dynamicTransform(contents) {
+	return contents.toString().replace('__SCRIPT__', `	
+		<script type="module" defer src="https://unpkg.com/dimport@1.0.0/dist/index.mjs?module" data-main="/build/main.js"></script>
+		<script nomodule defer src="https://unpkg.com/dimport/nomodule" data-main="/build/main.js"></script>
+	`)
 }
