@@ -7,50 +7,50 @@ import { getConfig } from '@sveltech/routify'
 import copy from 'rollup-plugin-copy'
 import del from 'del'
 
-export default (async () => {
-  const config = await getConfig({ unreadOnly: true })
-  const buildDir = `${config.distDir}/build`
-  const options = { ...config, port: 5000, buildDir }
-
-  const distDir = 'dist'
-
-  console.log({ config })
-  del.sync(config.distDir + '/**')
 
 
-  const bundledConfig = {
-    inlineDynamicImports: true,
-    output: [
-      {
-        sourcemap: true,
-        name: 'app',
-        format: 'iife',
-        file: `${buildDir}/bundle.js`
-      }
-    ],
-  }
-  const dynamicConfig = {
-    output: [
-      {
-        sourcemap: true,
-        name: 'app',
-        format: 'esm',
-        dir: buildDir
-      },
-    ]
-  }
+const distDir = 'dist'
+const buildDir = `${distDir}/build`
+const options = { distDir, buildDir, port: 5000, buildDir }
 
-  return [
-    configFactory(bundledConfig, options),
-    configFactory(dynamicConfig, { ...options, port: 5001, hotPort: 35730, dynamic: true })
+
+del.sync(distDir + '/**')
+
+
+const bundledConfig = {
+  inlineDynamicImports: true,
+  output: [
+    {
+      sourcemap: true,
+      name: 'app',
+      format: 'iife',
+      file: `${buildDir}/bundle.js`
+    }
+  ],
+}
+const dynamicConfig = {
+  output: [
+    {
+      sourcemap: true,
+      name: 'app',
+      format: 'esm',
+      dir: buildDir
+    },
   ]
-})()
+}
+
+export default [
+  // configFactory(dynamicConfig, { ...options, port: 5001, hotPort: 35730, dynamic: true }),
+  configFactory(bundledConfig, options)
+]
 
 
-function configFactory(config = {}, { port, distDir, buildDir, sourceDir, staticDir, hotPort = 35729, dynamic }) {
+
+function configFactory(config = {}, { port, distDir, buildDir, hotPort = 35729, dynamic }) {
+  const staticDir = 'static'
   const production = !process.env.ROLLUP_WATCH;
   const defaultConfig = {
-    input: `${sourceDir}/main.js`,
+    input: `src/main.js`,
     plugins: [
       copy({
         targets: [

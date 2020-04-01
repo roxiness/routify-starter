@@ -3,14 +3,15 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "run-p routify rollup",
-    "routify": "routify --dynamic-imports",
-    "dev:split": "routify --dynamic-imports",
-    "build": "routify -b && rollup -c && routify -bD && rollup -c && routify export",
+    "routify": "routify -D",
+    "build": "routify -bD && rollup -c && routify export",
     "start": "sirv dist --single",
     "preview-build": "cd scripts/server && node index",
     "deploy:now": "cd scripts/now && npm run deploy",
     "deploy:netlify": "cd scripts/netlify && npm run deploy",
-    "rollup": "rollup -cw"
+    "rollup": "export OUTPUT_TYPE=bundle || set OUTPUT_TYPE=BUNDLE && rollup -cw",
+    "$env:bundle": "export OUTPUT_BUNDLE_BUILD=1 || set OUTPUT_BUNDLE_BUILD=1",
+    "$env:dynamic": "export OUTPUT_DYNAMIC_BUILD=1 || set OUTPUT_DYNAMIC_BUILD=1"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^11.0.0",
