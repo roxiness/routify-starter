@@ -3,7 +3,6 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
-import { getConfig } from '@sveltech/routify'
 import copy from 'rollup-plugin-copy'
 import del from 'del'
 
@@ -11,13 +10,15 @@ import del from 'del'
 
 const distDir = 'dist'
 const buildDir = `${distDir}/build`
-const options = { distDir, buildDir, port: 5000, buildDir }
-
+const production = !process.env.ROLLUP_WATCH;
+const options = { distDir, buildDir, production }
 
 del.sync(distDir + '/**')
 
 
 const bundledConfig = {
+  ...options,
+  port: 5000,
   inlineDynamicImports: true,
   output: [
     {
@@ -29,6 +30,10 @@ const bundledConfig = {
   ],
 }
 const dynamicConfig = {
+  ...options,
+  inlineDynamicImports: false,
+  port: 5001,
+  hotPort: 35730,
   output: [
     {
       sourcemap: true,
@@ -39,24 +44,35 @@ const dynamicConfig = {
   ]
 }
 
-export default [
-  // configFactory(dynamicConfig, { ...options, port: 5001, hotPort: 35730, dynamic: true }),
-  configFactory(bundledConfig, options)
-]
+const bundling = production ? 'hybrid' : process.env.BUNDLING || 'bundle'
+
+const configs = []
+
+if (['hybrid', 'bundle'].includes(bundling))
+  configs.push(configFactory(bundledConfig))
+if (['hybrid', 'dynamic'].includes(bundling))
+  configs.push(configFactory(dynamicConfig))
+
+export default configs
 
 
 
-function configFactory(config = {}, { port, distDir, buildDir, hotPort = 35729, dynamic }) {
+
+
+function configFactory({ output, inlineDynamicImports, port, distDir, buildDir, hotPort = 35729, production }) {
   const staticDir = 'static'
-  const production = !process.env.ROLLUP_WATCH;
-  const defaultConfig = {
+  const __entryPointHtml = inlineDynamicImports ? '__bundled.html' : '__app.html'
+  const transform = inlineDynamicImports ? bundledTransform : dynamicTransform
+
+  return {
+    inlineDynamicImports,
     input: `src/main.js`,
+    output,
     plugins: [
       copy({
         targets: [
           { src: staticDir + '/**/!(__index.html)', dest: distDir },
-          { src: `${staticDir}/__index.html`, dest: distDir, rename: '__dynamic.html', transform: dynamicTransform },
-          { src: `${staticDir}/__index.html`, dest: distDir, rename: '__bundled.html', transform: bundledTransform },
+          { src: `${staticDir}/__index.html`, dest: distDir, rename: __entryPointHtml, transform },
         ], copyOnce: true
       }),
       svelte({
@@ -83,7 +99,7 @@ function configFactory(config = {}, { port, distDir, buildDir, hotPort = 35729, 
 
       // In dev mode, call `npm run start` once
       // the bundle has been generated
-      !production && serve(port, distDir, dynamic),
+      !production && serve(port, __entryPointHtml),
 
       // Watch the `public` directory and refresh the
       // browser on changes when not in production
@@ -97,21 +113,18 @@ function configFactory(config = {}, { port, distDir, buildDir, hotPort = 35729, 
       clearScreen: false
     }
   }
-  return { ...defaultConfig, ...config }
+
 }
 
-function serve(port = 5000, distDir, dynamic) {
+function serve(port = 5000, __entryPointHtml) {
   let started = false;
-  const file = dynamic ? '__dynamic.html' : '__bundled.html'
-  // const path = `${distDir}/${file}`
-  console.log('path', file)
 
   return {
     writeBundle() {
       if (!started) {
         started = true;
 
-        require('child_process').spawn('npm', ['run', 'start', `-- ${file} --dev --port ${port}`], {
+        require('child_process').spawn('npm', ['run', 'start', `-- ${__entryPointHtml} --dev --port ${port}`], {
           stdio: ['ignore', 'inherit', 'inherit'],
           shell: true
         });

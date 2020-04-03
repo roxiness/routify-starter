@@ -3,21 +3,22 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "run-p routify rollup",
-    "routify": "routify -D",
-    "build": "routify -bD && rollup -c && routify export",
+    "dev-dynamic": "cross-env BUNDLING=dynamic npm run dev",
+    "dev-hybrid": "cross-env BUNDLING=hybrid npm run dev",
+    "build": "routify -bD && rollup -c && routify export --basepath foo,bar",
     "start": "sirv dist --single",
     "preview-build": "cd scripts/server && node index",
     "deploy:now": "cd scripts/now && npm run deploy",
     "deploy:netlify": "cd scripts/netlify && npm run deploy",
-    "rollup": "export OUTPUT_TYPE=bundle || set OUTPUT_TYPE=BUNDLE && rollup -cw",
-    "$env:bundle": "export OUTPUT_BUNDLE_BUILD=1 || set OUTPUT_BUNDLE_BUILD=1",
-    "$env:dynamic": "export OUTPUT_DYNAMIC_BUILD=1 || set OUTPUT_DYNAMIC_BUILD=1"
+    "rollup": "rollup -cw",
+    "routify": "routify -D"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^11.0.0",
     "@rollup/plugin-node-resolve": "^7.0.0",
     "@sveltech/routify": "^1.1.1-2",
     "concurrently": "^5.0.2",
+    "cross-env": "^7.0.2",
     "del": "^5.1.0",
     "npm-run-all": "^4.1.5",
     "ppid-changed": "^1.0.1",
