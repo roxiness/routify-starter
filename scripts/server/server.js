@@ -4,7 +4,7 @@ const app = express()
 
 const {PORT = 5000} = process.env
 const distDir = '../../dist'
-const bundleDir = `${distDir}/build/bundle.js`
+const script = `${distDir}/build/bundle.js`
 const templateDir = `${distDir}/__app.html`
 
 // Serve assets and prerendered pages
@@ -12,7 +12,7 @@ app.use(express.static(distDir))
 
 // Fallback to SSR rendering if the file doesn't exist
 app.get('*', async (req, res) => {
-    const HTML = await ssr(templateDir, bundleDir, req.url)
+    const HTML = await ssr(templateDir, script, req.url)
     res.send(HTML)
 })
 
