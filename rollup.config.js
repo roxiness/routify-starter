@@ -12,6 +12,7 @@ const distDir = 'dist'
 const buildDir = `${distDir}/build`
 const production = !process.env.ROLLUP_WATCH;
 const options = { distDir, buildDir, production }
+const bundling = production ? 'hybrid' : process.env.BUNDLING || 'bundle'
 
 del.sync(distDir + '/**')
 
@@ -44,22 +45,7 @@ const dynamicConfig = {
   ]
 }
 
-const bundling = production ? 'hybrid' : process.env.BUNDLING || 'bundle'
-
-const configs = []
-
-if (['hybrid', 'bundle'].includes(bundling))
-  configs.push(configFactory(bundledConfig))
-if (['hybrid', 'dynamic'].includes(bundling))
-  configs.push(configFactory(dynamicConfig))
-
-export default configs
-
-
-
-
-
-function configFactory({ output, inlineDynamicImports, port, distDir, buildDir, hotPort = 35729, production }) {
+function createConfig({ output, inlineDynamicImports, port, distDir, buildDir, hotPort = 35729, production }) {
   const staticDir = 'static'
   const __entryPointHtml = inlineDynamicImports ? '__bundled.html' : '__app.html'
   const transform = inlineDynamicImports ? bundledTransform : dynamicTransform
@@ -113,8 +99,14 @@ function configFactory({ output, inlineDynamicImports, port, distDir, buildDir, 
       clearScreen: false
     }
   }
-
 }
+
+const configs = []
+if (['hybrid', 'bundle'].includes(bundling))
+  configs.push(createConfig(bundledConfig))
+if (['hybrid', 'dynamic'].includes(bundling))
+  configs.push(createConfig(dynamicConfig))
+export default configs
 
 function serve(port = 5000, __entryPointHtml) {
   let started = false;
