@@ -10,10 +10,12 @@ Alternatively, you can clone this repo.
 
 ### Npm scripts
 
-| Syntax          | Description                                                                        |
-|-----------------|------------------------------------------------------------------------------------|
-| `dev`            | Development (to test dynamic imports use ``npm run dev -- -D``)                                                    |
-| `build`          | Build a bundled app for SSR + prerendering and a dynamic app for code splitting   |
+| Syntax           | Description                                                                       |
+|------------------|-----------------------------------------------------------------------------------|
+| `dev`            | Development (port 5000)                                                           |
+| `dev-dynamic`    | Development with dynamic imports (port 5001)                                      |
+| `dev-hybrid`     | Development - combined dev and dev-dynamic (port 5000 and 5001)                   |
+| `build`          | Build a bundled app with SSR + prerendering and dynamic imports                   |
 | `preview-build`  | Run after build to preview app                                                    |
 | `deploy:*`       | Deploy to netlify or now                                                          |
 
