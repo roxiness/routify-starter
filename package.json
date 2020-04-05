@@ -5,7 +5,7 @@
     "dev": "run-p routify rollup",
     "dev-dynamic": "cross-env BUNDLING=dynamic npm run dev",
     "dev-hybrid": "cross-env BUNDLING=hybrid npm run dev",
-    "build": "routify -bD && rollup -c && routify export --basepath foo,bar",
+    "build": "routify -bD && rollup -c && routify export",
     "start": "sirv dist --single",
     "preview-build": "cd scripts/server && node index",
     "deploy:now": "cd scripts/now && npm run deploy",
