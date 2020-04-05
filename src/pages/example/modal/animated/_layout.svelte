@@ -15,7 +15,7 @@
       <!-- <Target/> is a placeholder that takes the size of its parent element. 
       If a modal is show and its key matches this cards key, <Target/> is hidden.
       This triggers the modal transition. -->
-      <Target {receive} {send} hide={$activeKey == key} />
+      <Target {receive} {send} hide={key == $activeKey} />
       <div class="content" style="color: white">{key}</div>
     </a>
   {/each}

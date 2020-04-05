@@ -1,9 +1,15 @@
 <script>
-  import { goto, params } from "@sveltech/routify";
-  export let key, scoped;
+  import { goto, params, context } from "@sveltech/routify";
+  
+  export let scoped;
   const { send, receive, fade, activeKey } = scoped;
-  $: $activeKey = $params.key;
+  const component = $context.component
+  $: componentChanged = component !== $context.component
+  $: key = component.params.key
+  $: $activeKey = !componentChanged && key || 'none'
 </script>
+
+<!-- TODO need to move logic to a page checker in parent layout -->
 
 <div class="container" on:click={() => $goto('../')} transition:fade|local>
   <div
