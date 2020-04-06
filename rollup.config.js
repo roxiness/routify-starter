@@ -8,57 +8,32 @@ import del from 'del'
 
 
 
+const staticDir = 'static'
 const distDir = 'dist'
 const buildDir = `${distDir}/build`
 const production = !process.env.ROLLUP_WATCH;
-const options = { distDir, buildDir, production }
-const bundling = production ? 'hybrid' : process.env.BUNDLING || 'bundle'
+const bundling = process.env.BUNDLING || production ? 'dynamic' : 'bundle'
+const shouldPrerender = (typeof process.env.PRERENDER !== 'undefined') ? process.env.PRERENDER : !!production
+
 
 del.sync(distDir + '/**')
 
-
-const bundledConfig = {
-  ...options,
-  port: 5000,
-  inlineDynamicImports: true,
-  output: [
-    {
-      sourcemap: true,
-      name: 'app',
-      format: 'iife',
-      file: `${buildDir}/bundle.js`
-    }
-  ],
-}
-const dynamicConfig = {
-  ...options,
-  inlineDynamicImports: false,
-  port: 5001,
-  hotPort: 35730,
-  output: [
-    {
-      sourcemap: true,
-      name: 'app',
-      format: 'esm',
-      dir: buildDir
-    },
-  ]
-}
-
-function createConfig({ output, inlineDynamicImports, port, distDir, buildDir, hotPort = 35729, production }) {
-  const staticDir = 'static'
-  const __entryPointHtml = inlineDynamicImports ? '__bundled.html' : '__app.html'
+function createConfig({ output, inlineDynamicImports, plugins = [] }) {
   const transform = inlineDynamicImports ? bundledTransform : dynamicTransform
 
   return {
     inlineDynamicImports,
     input: `src/main.js`,
-    output,
+    output: {
+      name: 'app',
+      sourcemap: true,
+      ...output
+    },
     plugins: [
       copy({
         targets: [
           { src: staticDir + '/**/!(__index.html)', dest: distDir },
-          { src: `${staticDir}/__index.html`, dest: distDir, rename: __entryPointHtml, transform },
+          { src: `${staticDir}/__index.html`, dest: distDir, rename: '__app.html', transform },
         ], copyOnce: true
       }),
       svelte({
@@ -83,17 +58,12 @@ function createConfig({ output, inlineDynamicImports, port, distDir, buildDir, h
       }),
       commonjs(),
 
-      // In dev mode, call `npm run start` once
-      // the bundle has been generated
-      !production && serve(port, __entryPointHtml),
-
-      // Watch the `public` directory and refresh the
-      // browser on changes when not in production
-      !production && livereload({ watch: distDir, port: hotPort }),
 
       // If we're building for production (npm run build
       // instead of npm run dev), minify
-      production && terser()
+      production && terser(),
+
+      ...plugins
     ],
     watch: {
       clearScreen: false
@@ -101,28 +71,63 @@ function createConfig({ output, inlineDynamicImports, port, distDir, buildDir, h
   }
 }
 
-const configs = []
-if (['hybrid', 'bundle'].includes(bundling))
-  configs.push(createConfig(bundledConfig))
-if (['hybrid', 'dynamic'].includes(bundling))
+
+const bundledConfig = {
+  inlineDynamicImports: true,
+  output: {
+    format: 'iife',
+    file: `${buildDir}/bundle.js`
+  },
+  plugins: [
+    !production && serve(),
+    !production && livereload(distDir)
+  ]
+}
+
+const dynamicConfig = {
+  inlineDynamicImports: false,
+  output: {
+    format: 'esm',
+    dir: buildDir
+  },
+  plugins: []
+}
+
+
+const configs = [createConfig(bundledConfig)]
+if (bundling === 'dynamic')
   configs.push(createConfig(dynamicConfig))
+if (shouldPrerender) [...configs].pop().plugins.push(prerender())
 export default configs
 
-function serve(port = 5000, __entryPointHtml) {
-  let started = false;
 
+function serve() {
+  let started = false;
   return {
     writeBundle() {
       if (!started) {
         started = true;
-
-        require('child_process').spawn('npm', ['run', 'start', `-- ${__entryPointHtml} --dev --port ${port}`], {
+        require('child_process').spawn('npm', ['run', 'serve'], {
           stdio: ['ignore', 'inherit', 'inherit'],
           shell: true
         });
       }
     }
   };
+}
+
+function prerender() {
+  return {
+    writeBundle() {
+      console.log('haspre', shouldPrerender)
+      if (shouldPrerender) {
+        require('child_process').spawn('npm', ['run', 'export'], {
+          stdio: ['ignore', 'inherit', 'inherit'],
+          shell: true
+        });
+      }
+    }
+  }
 }
 
 function bundledTransform(contents) {
