@@ -79,7 +79,7 @@ const bundledConfig = {
     file: `${buildDir}/bundle.js`
   },
   plugins: [
-    // !production && serve(),
+    !production && serve(),
     !production && livereload(distDir)
   ]
 }
@@ -101,20 +101,20 @@ if (shouldPrerender) [...configs].pop().plugins.push(prerender())
 export default configs
 
 
-// function serve() {
-//   let started = false;
-//   return {
-//     writeBundle() {
-//       if (!started) {
-//         started = true;
+function serve() {
+  let started = false;
+  return {
+    writeBundle() {
+      if (!started) {
+        started = true;
         require('child_process').spawn('npm', ['run', 'serve'], {
           stdio: ['ignore', 'inherit', 'inherit'],
           shell: true
         });
-//       }
-//     }
-//   };
-// }
+      }
+    }
+  };
+}
 
 function prerender() {
   return {
