@@ -6,7 +6,7 @@
     "dev-dynamic": "cross-env BUNDLING=dynamic npm run dev",
     "dev-prerender": "cross-env PRERENDER=true npm run dev",
     "build": "routify -bD && rollup -c",
-    "serve": "spassr --serve-spa --serve-ssr",
+    "serve": "spassr --serve-spa",
     "export": "routify export",
     "deploy:now": "cd scripts/now && npm run deploy",
     "deploy:netlify": "cd scripts/netlify && npm run deploy",
