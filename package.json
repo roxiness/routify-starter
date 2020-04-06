@@ -16,7 +16,7 @@
   "devDependencies": {
     "@rollup/plugin-commonjs": "^11.0.0",
     "@rollup/plugin-node-resolve": "^7.0.0",
-    "@sveltech/routify": "^1.5.0-beta.36",
+    "@sveltech/routify": "^1.5.0-beta.38",
     "concurrently": "^5.0.2",
     "cross-env": "^7.0.2",
     "del": "^5.1.0",
