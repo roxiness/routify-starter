@@ -13,10 +13,10 @@ Alternatively, you can clone this repo.
 | Syntax           | Description                                                                       |
 |------------------|-----------------------------------------------------------------------------------|
 | `dev`            | Development (port 5000)                                                           |
-| `dev-dynamic`    | Development with dynamic imports (port 5001)                                      |
-| `dev-hybrid`     | Development - combined dev and dev-dynamic (port 5000 and 5001)                   |
+| `dev-dynamic`    | Development with dynamic imports                                                  |
+| `dev-prerender`  | Development - with prerenders                                                     |
 | `build`          | Build a bundled app with SSR + prerendering and dynamic imports                   |
-| `preview-build`  | Run after build to preview app                                                    |
+| `serve`          | Run after a build to preview. Serves SPA on 5000 and SSR on 5005                  |
 | `deploy:*`       | Deploy to netlify or now                                                          |
 
 ### SSR and pre-rendering
