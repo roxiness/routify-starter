@@ -1,4 +1,4 @@
 <script>
-  import { goto } from "@sveltech/routify";
-  $goto('../home')
+  import { redirect } from '@sveltech/routify'
+  $redirect('../home')
 </script>
