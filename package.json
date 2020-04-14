@@ -30,7 +30,7 @@
     "rollup-plugin-terser": "^5.3.0"
   },
   "dependencies": {
-    "@sveltech/routify": "^1.5.0-beta.46",
+    "@sveltech/routify": "^1.5.0-beta.47",
     "svelte": "^3.20.1"
   }
 }
