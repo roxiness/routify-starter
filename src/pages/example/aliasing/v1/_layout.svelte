@@ -11,4 +11,6 @@
 
 
 
-<slot><!-- optional fallback --></slot>
+<slot>
+  <!-- optional fallback -->
+</slot>
