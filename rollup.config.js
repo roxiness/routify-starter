@@ -119,7 +119,6 @@ function serve() {
 function prerender() {
   return {
     writeBundle() {
-      console.log('haspre', shouldPrerender)
       if (shouldPrerender) {
         require('child_process').spawn('npm', ['run', 'export'], {
           stdio: ['ignore', 'inherit', 'inherit'],
