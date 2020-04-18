@@ -3,7 +3,7 @@
 </script>
 
 <style>
-  .card {
+  .layout-container :global(.card) {
     width: 66%;
     margin: 16px;
     padding: 16px;
@@ -12,14 +12,19 @@
     box-shadow: 0px 5px 20px 5px rgba(0, 0, 0, 0.075);
     display: inline-block;
   }
+  * > :global(.layout-container) {
+    text-align: center;
+  }
 </style>
 
-<div style="text-align: center;">
-  <div class="card">
-    <a href={$url('./child')}>Child</a>
+<div >
+  <div class="layout-container">
+    <div class="card">
+      <a href={$url('./child')}>Child</a>
 
-    <slot>
-      <!-- optional fallback -->
-    </slot>
+      <slot>
+        <!-- optional fallback -->
+      </slot>
+    </div>
   </div>
 </div>

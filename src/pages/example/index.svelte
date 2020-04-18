@@ -9,7 +9,7 @@
   <div>
     <b>Guide:</b>
     <br />
-    <a href="https://routify.now.sh">https://routify.now.sh</a>
+    <a href="https://routify.dev">https://routify.dev</a>
   </div>
 
   <br />

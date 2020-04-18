@@ -60,3 +60,5 @@
 </div>
 
 <a href={$url('../../')}>Back to examples</a>
+
+<!-- routify:options bundle=true -->

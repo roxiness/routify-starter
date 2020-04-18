@@ -7,14 +7,15 @@ Starter template for [Routify](https://github.com/sveltech/routify)
 To use this starter run `npx @sveltech/routify init` in an empty folder.
 
 Alternatively, you can clone this repo.
- 
+
 ### Npm scripts
 
-| Syntax          | Description                                                                        |
-|-----------------|------------------------------------------------------------------------------------|
-| `dev`            | Development (to test dynamic imports use ``npm run dev -- -D``)                                                    |
-| `build`          | Build a bundled app for SSR + prerendering and a dynamic app for code splitting   |
-| `preview-build`  | Run after build to preview app                                                    |
+| Syntax           | Description                                                                       |
+|------------------|-----------------------------------------------------------------------------------|
+| `dev`            | Development (port 5000)                                                           |
+| `dev-dynamic`    | Development with dynamic imports                                                  |
+| `build`          | Build a bundled app with SSR + prerendering and dynamic imports                   |
+| `serve`          | Run after a build to preview. Serves SPA on 5000 and SSR on 5005                  |
 | `deploy:*`       | Deploy to netlify or now                                                          |
 
 ### SSR and pre-rendering
