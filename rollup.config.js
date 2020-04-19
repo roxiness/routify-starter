@@ -90,7 +90,9 @@ const dynamicConfig = {
     format: 'esm',
     dir: buildDir
   },
-  plugins: []
+  plugins: [
+    !production && livereload(distDir),
+  ]
 }
 
 
