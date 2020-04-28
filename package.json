@@ -22,7 +22,6 @@
     "ppid-changed": "^1.0.1",
     "spassr": "^1.0.2",
     "rollup": "^2.6.1",
-    "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-copy": "^3.3.0",
     "rollup-plugin-livereload": "^1.2.0",
     "rollup-plugin-svelte": "^5.2.1",
