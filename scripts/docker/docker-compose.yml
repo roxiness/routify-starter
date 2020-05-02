@@ -1,0 +1,18 @@
+# This file is intended as a starting point
+# Assuming you have run the following docker command in project root:
+#
+#   docker build . -f scripts/docker/Dockerfile -t routify-starter
+#
+# you can run this example from your project root with
+#
+#   docker-compose -f scripts/docker/docker-compose.yml up -d
+#
+# and visit http://localhost:5000 
+version: "3"
+
+services:
+  routify-starter:
+    image: "routify-starter" # CHANGE ME, if you have chosen another tag
+    ports: 
+      - "5000:5000"
+      - "5005:5005"
