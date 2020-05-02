@@ -1,12 +1,7 @@
-FROM node:lts-alpine AS base
+FROM node:lts-alpine
 RUN apk add --no-cache git
-COPY ./scripts/docker/spassr-package.json /app/package.json
 WORKDIR /app
-RUN npm install --production
-
-FROM node:lts-stretch-slim
-COPY --from=base /app /app
-WORKDIR /app
+RUN npm install spassr
 COPY ./dist ./dist
 EXPOSE 5000 5005
-ENTRYPOINT ["npm", "run", "serve"]
+ENTRYPOINT ["npx", "spassr", "--serve-spa", "--serve-ssr"]
