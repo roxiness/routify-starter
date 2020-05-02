@@ -1,0 +1,11 @@
+{
+  "name": "docker-spassr",
+  "description": "just temp docker container for running spassr",
+  "version": "0.1.0",
+  "scripts": {
+    "serve": "spassr --serve-spa --serve-ssr"
+  },
+  "dependencies": {
+    "spassr": "^1.0.2"
+  }
+}
