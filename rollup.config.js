@@ -1,11 +1,35 @@
+require('dotenv').config();
+const path = require('path');
 import svelte from 'rollup-plugin-svelte';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
-import copy from 'rollup-plugin-copy'
-import del from 'del'
+import copy from 'rollup-plugin-copy';
+import del from 'del';
+import alias from '@rollup/plugin-alias';
+import globals from 'rollup-plugin-node-globals';
+import replace from '@rollup/plugin-replace';
 
+const env = (filterPrefix = 'APP_', targetPrefix = 'process.env.', excluded = []) => {
+	const APP_ENV_VARS = {};
+	for (let key in process.env) {
+		if (key.startsWith(filterPrefix) && !excluded.includes(key)) {
+			APP_ENV_VARS[targetPrefix + key] = "'" + process.env[key] + "'";
+		}
+	}
+	return APP_ENV_VARS;
+};
+
+const aliases = () => ({
+	resolve: ['.js', '.svelte', '.css'],
+	entries: [
+		{
+			find: '@',
+			replacement: path.resolve(__dirname, 'src/').replace(/\\/g, '/')
+		}
+	]
+});
 
 
 const staticDir = 'static'
@@ -30,6 +54,10 @@ function createConfig({ output, inlineDynamicImports, plugins = [] }) {
       ...output
     },
     plugins: [
+      alias(aliases()),
+      replace({
+          ...env()
+      }),
       copy({
         targets: [
           { src: staticDir + '/**/!(__index.html)', dest: distDir },
