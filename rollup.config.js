@@ -34,7 +34,9 @@ function createConfig({ output, inlineDynamicImports, plugins = [] }) {
         targets: [
           { src: staticDir + '/**/!(__index.html)', dest: distDir },
           { src: `${staticDir}/__index.html`, dest: distDir, rename: '__app.html', transform },
-        ], copyOnce: true
+        ],
+	copyOnce: true,
+	flatten: false
       }),
       svelte({
         // enable run-time checks when not in production
