@@ -119,7 +119,7 @@ const serviceWorkerConfig = {
       swSrc: `${distDir}/sw.js`,
       swDest: `${distDir}/sw.js`,
       globDirectory: distDir,
-      globPatterns: ['**/*.{js,css,html,svg}'],
+      globPatterns: ['**/*.{js,css,svg}', '__app.html'],
       maximumFileSizeToCacheInBytes: 10000000, // 10 MB
     }),
     replace({ 'process.env.NODE_ENV': JSON.stringify('production'), }),
