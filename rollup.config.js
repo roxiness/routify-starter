@@ -5,6 +5,8 @@ import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import copy from 'rollup-plugin-copy'
 import del from 'del'
+import replace from '@rollup/plugin-replace';
+import { injectManifest } from 'rollup-plugin-workbox'
 
 
 
@@ -12,7 +14,7 @@ const staticDir = 'static'
 const distDir = 'dist'
 const buildDir = `${distDir}/build`
 const production = !process.env.ROLLUP_WATCH;
-const bundling = process.env.BUNDLING || production ? 'dynamic' : 'bundle'
+const useDynamicImports = process.env.BUNDLING || production
 const shouldPrerender = (typeof process.env.PRERENDER !== 'undefined') ? process.env.PRERENDER : !!production
 
 
@@ -35,8 +37,8 @@ function createConfig({ output, inlineDynamicImports, plugins = [] }) {
           { src: staticDir + '/**/!(__index.html)', dest: distDir },
           { src: `${staticDir}/__index.html`, dest: distDir, rename: '__app.html', transform },
         ],
-	copyOnce: true,
-	flatten: false
+        copyOnce: true,
+        flatten: false
       }),
       svelte({
         // enable run-time checks when not in production
@@ -82,7 +84,8 @@ const bundledConfig = {
   },
   plugins: [
     !production && serve(),
-    !production && livereload(distDir)
+    !production && livereload(distDir),
+    prerender()
   ]
 }
 
@@ -97,11 +100,41 @@ const dynamicConfig = {
   ]
 }
 
+const serviceWorkerConfig = {
+  input: `src/sw.js`,
+  output: {
+    name: 'service_worker',
+    sourcemap: true,
+    format: 'iife',
+    file: `${distDir}/sw.js`
+  },
+  plugins: [
+    {
+      name: 'watch-app',
+      buildStart() { this.addWatchFile("dist/build") }
+    },
+    commonjs(),
+    resolve({ browser: true }),
+    injectManifest({
+      swSrc: `${distDir}/sw.js`,
+      swDest: `${distDir}/sw.js`,
+      globDirectory: distDir,
+      globPatterns: ['**/*.{js,css,html,svg}'],
+      maximumFileSizeToCacheInBytes: 10000000, // 10 MB
+    }),
+    replace({ 'process.env.NODE_ENV': JSON.stringify('production'), }),
+    production && terser(),
+  ]
+}
 
-const configs = [createConfig(bundledConfig)]
-if (bundling === 'dynamic')
-  configs.push(createConfig(dynamicConfig))
-if (shouldPrerender) [...configs].pop().plugins.push(prerender())
+
+
+const configs = [
+  createConfig(bundledConfig),
+  useDynamicImports ? createConfig(dynamicConfig) : null,
+  serviceWorkerConfig
+].filter(Boolean)
+
 export default configs
 
 
