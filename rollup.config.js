@@ -174,7 +174,6 @@ function bundledTransform(contents) {
 
 function dynamicTransform(contents) {
   return contents.toString().replace('__SCRIPT__', `
-	<script type="module" defer src="https://unpkg.com/dimport@1.0.0/dist/index.mjs?module" data-main="/build/main.js"></script>
-	<script nomodule defer src="https://unpkg.com/dimport/nomodule" data-main="/build/main.js"></script>
+  <script type="module" defer src="/build/main.js"></script>	
 	`)
 }
