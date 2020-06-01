@@ -36,7 +36,10 @@ const externalAssetsConfig = () => ({
  * INITIALIZE *
  **************/
 
-/** precache all files */
+/**
+ * precache all files
+ * remember to precache __app.html and 404.svg if caching of all files is disabled
+ */
 precacheAndRoute(files)
 
 /** precache only fallback files */
@@ -50,7 +53,7 @@ clientsClaim() // take control of client without having to wait for refresh
 
 /** 
  * manually upgrade service worker by sending a SKIP_WAITING message.
- * (remember to disable skipWaiting())
+ * (remember to disable skipWaiting() above)
  */
 // addEventListener('message', event => { if (event.data && event.data.type === 'SKIP_WAITING') skipWaiting(); });
 
