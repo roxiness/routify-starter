@@ -4,8 +4,6 @@ import commonjs from '@rollup/plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import copy from 'rollup-plugin-copy'
-import del from 'del'
-
 
 
 const staticDir = 'static'
@@ -15,8 +13,6 @@ const production = !process.env.ROLLUP_WATCH;
 const bundling = process.env.BUNDLING || production ? 'dynamic' : 'bundle'
 const shouldPrerender = (typeof process.env.PRERENDER !== 'undefined') ? process.env.PRERENDER : !!production
 
-
-del.sync(distDir + '/**')
 
 function createConfig({ output, inlineDynamicImports, plugins = [] }) {
   const transform = inlineDynamicImports ? bundledTransform : dynamicTransform
@@ -32,7 +28,7 @@ function createConfig({ output, inlineDynamicImports, plugins = [] }) {
     plugins: [
       copy({
         targets: [
-          { src: staticDir + '/**/!(__index.html)', dest: distDir },
+          { src: [staticDir + "/*", "!*/(__index.html)"], dest: distDir },
           { src: `${staticDir}/__index.html`, dest: distDir, rename: '__app.html', transform },
         ],
 	copyOnce: true,
