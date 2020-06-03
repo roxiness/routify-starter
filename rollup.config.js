@@ -8,15 +8,12 @@ import del from 'del'
 import replace from '@rollup/plugin-replace';
 import { injectManifest } from 'rollup-plugin-workbox'
 
-
-
 const staticDir = 'static'
 const distDir = 'dist'
 const buildDir = `${distDir}/build`
 const production = !process.env.ROLLUP_WATCH;
 const useDynamicImports = process.env.BUNDLING || production
 const shouldPrerender = (typeof process.env.PRERENDER !== 'undefined') ? process.env.PRERENDER : !!production
-
 
 del.sync(distDir + '/**')
 
@@ -34,7 +31,7 @@ function createConfig({ output, inlineDynamicImports, plugins = [] }) {
     plugins: [
       copy({
         targets: [
-          { src: staticDir + '/**/!(__index.html)', dest: distDir },
+          { src: [staticDir + "/*", "!*/(__index.html)"], dest: distDir },
           { src: `${staticDir}/__index.html`, dest: distDir, rename: '__app.html', transform },
         ],
         copyOnce: true,
