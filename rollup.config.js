@@ -67,7 +67,8 @@ function createConfig({ output, inlineDynamicImports, plugins = [] }) {
       ...plugins
     ],
     watch: {
-      clearScreen: false
+      clearScreen: false,
+      buildDelay: 100,
     }
   }
 }
