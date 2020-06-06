@@ -28,8 +28,7 @@
     box-shadow: 0px 5px 20px 5px rgba(0, 0, 0, 0.075);
   }
 
-  .nav {position: fixed; left: 0; right: 0;}
-  .main {overflow: auto; height: calc(100% - 100px); padding-top: 100px}
+  .main {overflow: auto; height: calc(100%);}
 </style>
 
 <!-- Reset files doesn't inherit the parent scope.
