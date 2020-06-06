@@ -28,7 +28,7 @@
     box-shadow: 0px 5px 20px 5px rgba(0, 0, 0, 0.075);
   }
 
-  .main {overflow: auto; height: calc(100%);}
+  .main {overflow: auto; height: calc(100%); padding: 8px}
 </style>
 
 <!-- Reset files doesn't inherit the parent scope.

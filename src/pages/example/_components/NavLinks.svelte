@@ -24,7 +24,7 @@
   aside {
     text-align: center;
   }
-  .nav {
+  nav {
     background: white;
   }
 
@@ -35,26 +35,39 @@
   .active {
     font-weight: bold;
   }
+  .mobile-nav {
+    font-size: 18px;
+    background: white;
+    padding: 8px;
+    box-shadow: 0px 5px 20px 5px rgba(0, 0, 0, 0.075);
+    display: block;
+  }
+  .mobile-nav * {
+    vertical-align: middle;
+  }
+  .title {
+    
+    top: 6px;
+    left: 0;
+    right: 0;
+    text-align: center;
+  }
+
   .burger {
     font-size: 24px;
     position: absolute;
-    top: 4px;
     left: 8px;
-    z-index: 2;
+    top: 4px;
   }
-  .nav {
-    position: absolute;
+  nav {    
     display: none;
     width: 100%;
     padding: 16px;
-      z-index:1
-  }
-  .nav.show {
-    display: block;
+    z-index: 1;
   }
 
   @media (min-width: 640px) {
-    .nav {
+    nav {
       margin: 16px;
       border-radius: 4px;
       box-shadow: 0px 5px 20px 5px rgba(0, 0, 0, 0.075);
@@ -68,26 +81,27 @@
       display: inline-block;
     }
 
-    .backlink {
-      position: absolute;
-      left: 16px;
-      color: #c848c1;
-      font-weight: bold;
-    }
-    .burger {
+    .mobile-nav {
       display: none;
     }
+  }
+
+  nav.show {
+    display: block;
   }
 </style>
 
 <aside>
-  <div class="burger" on:click={handleBurger}>☰</div>
-  <div class="nav" class:show on:click={() => (show = false)}>
-    <a class="backlink" href={$url('/')} />
+  <nav class="mobile-nav">
+    <span class="burger" on:click={handleBurger}>☰</span>
+    <span class="title">Routify Examples</span>
+    <span />
+  </nav>
+  <nav class:show on:click={() => (show = false)}>
     {#each _links as [path, name]}
       <a class="link" class:active={$isActive(path)} href={$url(path)}>
         {name}
       </a>
     {/each}
-  </div>
+  </nav>
 </aside>
