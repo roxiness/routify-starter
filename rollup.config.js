@@ -20,6 +20,7 @@ const shouldPrerender = (typeof process.env.PRERENDER !== 'undefined') ? process
 del.sync(distDir + '/**')
 
 const hot = !production
+const isNollup = process.env.NOLLUP
 
 const hmr = hot && Hmr({
 	inMemory: true,
@@ -104,22 +105,52 @@ const dynamicConfig = {
     dir: buildDir
   },
   plugins: [
-    !production && livereload(distDir),
+    // !production && livereload(distDir),
   ]
 }
 
+const nollupConfig = {
+	...dynamicConfig,
+	plugins: [
+		// we want the serve
+		...bundledConfig.plugins,
+		{
+			// NOTE Nollup currently chokes on `export const {tree, routes} = ...`
+			name: 'hotfix for nollup',
+			transform(code, id) {
+				if (id.endsWith('/tmp/routes.js')) {
+					code = code.replace(
+						'export const {tree, routes} = buildClientTree(_tree)',
+						'       const {tree, routes} = buildClientTree(_tree); export {routes, tree}'
+					)
+					return { code }
+				}
+				return null
+			}
+		}
+	]
+}
 
-const configs = [createConfig(bundledConfig)]
-if (bundling === 'dynamic')
-  configs.push(createConfig(dynamicConfig))
-if (shouldPrerender) [...configs].pop().plugins.push(prerender())
+const configs = []
+if (isNollup) {
+	configs.push(createConfig(nollupConfig))
+} else {
+	configs.push(createConfig(bundledConfig))
+	if (bundling === 'dynamic') {
+		configs.push(createConfig(dynamicConfig))
+	}
+	if (shouldPrerender) [...configs].pop().plugins.push(prerender())
+}
+
 export default configs
 
 
 function serve() {
   let started = false;
+	// NOTE nollup has no writeBundle hook (it doesn't write to disk)
+	const hook = isNollup ? 'generateBundle' : 'writeBundle'
   return {
-    writeBundle() {
+    [hook]() {
       if (!started) {
         started = true;
         require('child_process').spawn('npm', ['run', 'serve'], {
