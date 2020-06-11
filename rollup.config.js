@@ -114,20 +114,6 @@ const nollupConfig = {
 	plugins: [
 		// we want the serve
 		...bundledConfig.plugins,
-		{
-			// NOTE Nollup currently chokes on `export const {tree, routes} = ...`
-			name: 'hotfix for nollup',
-			transform(code, id) {
-				if (id.endsWith('/tmp/routes.js')) {
-					code = code.replace(
-						'export const {tree, routes} = buildClientTree(_tree)',
-						'       const {tree, routes} = buildClientTree(_tree); export {routes, tree}'
-					)
-					return { code }
-				}
-				return null
-			}
-		}
 	]
 }
 
