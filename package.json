@@ -20,7 +20,7 @@
     "concurrently": "^5.1.0",
     "del": "^5.1.0",
     "npm-run-all": "^4.1.5",
-    "spassr": "^1.0.2",
+    "spassr": "^1.0.3",
     "rollup": "^2.6.1",
     "rollup-plugin-copy": "^3.3.0",
     "rollup-plugin-livereload": "^1.2.0",
