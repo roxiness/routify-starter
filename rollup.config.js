@@ -1,4 +1,5 @@
-import svelte from 'rollup-plugin-svelte';
+import svelte from 'rollup-plugin-svelte-hot';
+import Hmr from 'rollup-plugin-hot'
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
@@ -7,6 +8,7 @@ import copy from 'rollup-plugin-copy'
 import del from 'del'
 import replace from '@rollup/plugin-replace';
 import { injectManifest } from 'rollup-plugin-workbox'
+import { spassr } from 'spassr/server'
 
 const staticDir = 'static'
 const distDir = 'dist'
@@ -14,10 +16,11 @@ const buildDir = `${distDir}/build`
 const production = !process.env.ROLLUP_WATCH;
 const useDynamicImports = process.env.BUNDLING || production
 const shouldPrerender = (typeof process.env.PRERENDER !== 'undefined') ? process.env.PRERENDER : !!production
+const isNollup = process.env.NOLLUP
 
 del.sync(distDir + '/**')
 
-function createConfig({ output, inlineDynamicImports, plugins = [] }) {
+function createConfig({ output, inlineDynamicImports = false, plugins = [] }) {
   const transform = inlineDynamicImports ? bundledTransform : dynamicTransform
 
   return {
@@ -45,7 +48,8 @@ function createConfig({ output, inlineDynamicImports, plugins = [] }) {
         // a separate file — better for performance
         css: css => {
           css.write(`${buildDir}/bundle.css`);
-        }
+        },
+        hot: !production,
       }),
 
       // If you have external dependencies installed from
@@ -64,7 +68,10 @@ function createConfig({ output, inlineDynamicImports, plugins = [] }) {
       // instead of npm run dev), minify
       production && terser(),
 
-      ...plugins
+      ...plugins,
+
+      !production && Hmr({ inMemory: true, public: staticDir, })
+      // !production && livereload(distDir)
     ],
     watch: {
       clearScreen: false,
@@ -76,25 +83,16 @@ function createConfig({ output, inlineDynamicImports, plugins = [] }) {
 
 const bundledConfig = {
   inlineDynamicImports: true,
-  output: {
-    format: 'iife',
-    file: `${buildDir}/bundle.js`
-  },
+  output: { format: 'iife', file: `${buildDir}/bundle.js` },
   plugins: [
     !production && serve(),
-    !production && livereload(distDir),
-    prerender()
+    shouldPrerender && prerender()
   ]
 }
 
 const dynamicConfig = {
-  inlineDynamicImports: false,
-  output: {
-    format: 'esm',
-    dir: buildDir
-  },
+  output: { format: 'esm', dir: buildDir },
   plugins: [
-    !production && livereload(distDir),
   ]
 }
 
@@ -125,27 +123,33 @@ const serviceWorkerConfig = {
   ]
 }
 
+const nollupConfig = {
+  ...dynamicConfig,
+  plugins: [
+    // we want the serve
+    ...bundledConfig.plugins,
+  ]
+}
 
 
 const configs = [
-  createConfig(bundledConfig),
-  useDynamicImports ? createConfig(dynamicConfig) : null,
-  serviceWorkerConfig
+  !isNollup && createConfig(bundledConfig),
+  isNollup && createConfig(nollupConfig),
+  !isNollup && useDynamicImports && createConfig(dynamicConfig),
+  !isNollup && serviceWorkerConfig
 ].filter(Boolean)
 
 export default configs
 
 
 function serve() {
-  let started = false;
+  let started = false
   return {
-    writeBundle() {
+    generateBundle() {
       if (!started) {
-        started = true;
-        require('child_process').spawn('npm', ['run', 'serve'], {
-          stdio: ['ignore', 'inherit', 'inherit'],
-          shell: true
-        });
+        console.log('STARTING SERVE')
+        started = true
+        spassr({ serveSpa: true, serveSsr: true })
       }
     }
   };
@@ -154,12 +158,10 @@ function serve() {
 function prerender() {
   return {
     writeBundle() {
-      if (shouldPrerender) {
-        require('child_process').spawn('npm', ['run', 'export'], {
-          stdio: ['ignore', 'inherit', 'inherit'],
-          shell: true
-        });
-      }
+      require('child_process').spawn('npm', ['run', 'export'], {
+        stdio: ['ignore', 'inherit', 'inherit'],
+        shell: true
+      });
     }
   }
 }
