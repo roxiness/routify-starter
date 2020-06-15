@@ -14,87 +14,83 @@ const staticDir = 'static'
 const distDir = 'dist'
 const buildDir = `${distDir}/build`
 const production = !process.env.ROLLUP_WATCH;
-const useDynamicImports = process.env.BUNDLING || production
-const shouldPrerender = (typeof process.env.PRERENDER !== 'undefined') ? process.env.PRERENDER : !!production
-const isNollup = process.env.NOLLUP
+const shouldPrerender = process.env.PRERENDER === "true" || !!production
+const useNollup = process.env.NOLLUP
+const useDynamicImports = process.env.BUNDLING === 'dynamic' || useNollup || !!production
+const transform = useDynamicImports  ? dynamicTransform : bundledTransform
+const browserUpdate = () => useNollup ? Hmr({ inMemory: true, public: staticDir, }) : livereload(distDir)
 
 del.sync(distDir + '/**')
 
-function createConfig({ output, inlineDynamicImports = false, plugins = [] }) {
-  const transform = inlineDynamicImports ? bundledTransform : dynamicTransform
+const baseConfig = () => ({
+  input: `src/main.js`,
+  output: {
+    name: 'routify_app',
+    sourcemap: true,
+  },
+  plugins: [
+    copy({
+      targets: [
+        { src: [staticDir + "/*", "!*/(__index.html)"], dest: distDir },
+        { src: `${staticDir}/__index.html`, dest: distDir, rename: '__app.html', transform },
+      ],
+      copyOnce: true,
+      flatten: false
+    }),
+    svelte({
+      // enable run-time checks when not in production
+      dev: !production,
+      hydratable: true, //todo set to false if possible
+      // we'll extract any component CSS out into
+      // a separate file — better for performance
+      css: css => {
+        css.write(`${buildDir}/bundle.css`);
+      },
+      hot: !production,
+    }),
 
-  return {
-    inlineDynamicImports,
-    input: `src/main.js`,
-    output: {
-      name: 'app',
-      sourcemap: true,
-      ...output
-    },
-    plugins: [
-      copy({
-        targets: [
-          { src: [staticDir + "/*", "!*/(__index.html)"], dest: distDir },
-          { src: `${staticDir}/__index.html`, dest: distDir, rename: '__app.html', transform },
-        ],
-        copyOnce: true,
-        flatten: false
-      }),
-      svelte({
-        // enable run-time checks when not in production
-        dev: !production,
-        hydratable: true,
-        // we'll extract any component CSS out into
-        // a separate file — better for performance
-        css: css => {
-          css.write(`${buildDir}/bundle.css`);
-        },
-        hot: !production,
-      }),
-
-      // If you have external dependencies installed from
-      // npm, you'll most likely need these plugins. In
-      // some cases you'll need additional configuration —
-      // consult the documentation for details:
-      // https://github.com/rollup/rollup-plugin-commonjs
-      resolve({
-        browser: true,
-        dedupe: importee => importee === 'svelte' || importee.startsWith('svelte/')
-      }),
-      commonjs(),
+    // If you have external dependencies installed from
+    // npm, you'll most likely need these plugins. In
+    // some cases you'll need additional configuration —
+    // consult the documentation for details:
+    // https://github.com/rollup/rollup-plugin-commonjs
+    resolve({
+      browser: true,
+      dedupe: importee => importee === 'svelte' || importee.startsWith('svelte/')
+    }),
+    commonjs(),
 
 
-      // If we're building for production (npm run build
-      // instead of npm run dev), minify
-      production && terser(),
-
-      ...plugins,
-
-      !production && Hmr({ inMemory: true, public: staticDir, })
-      // !production && livereload(distDir)
-    ],
-    watch: {
-      clearScreen: false,
-      buildDelay: 100,
-    }
+    // If we're building for production (npm run build
+    // instead of npm run dev), minify
+    production && terser(),
+    !production && serve(),
+    !production && browserUpdate(),
+    shouldPrerender && prerender(), //todo fix
+  ],
+  watch: {
+    clearScreen: false,
+    buildDelay: 100,
   }
-}
+})
 
 
+// this should be instantiated so serve doesn't run every time
 const bundledConfig = {
   inlineDynamicImports: true,
   output: { format: 'iife', file: `${buildDir}/bundle.js` },
-  plugins: [
-    !production && serve(),
-    shouldPrerender && prerender()
-  ]
+  plugins: []
 }
 
 const dynamicConfig = {
-  output: { format: 'esm', dir: buildDir },
-  plugins: [
-  ]
+  output: { format: 'esm', dir: buildDir }
 }
+
+const nollupConfig = {
+  ...dynamicConfig,
+  plugins: []
+}
+
 
 const serviceWorkerConfig = {
   input: `src/sw.js`,
@@ -123,20 +119,13 @@ const serviceWorkerConfig = {
   ]
 }
 
-const nollupConfig = {
-  ...dynamicConfig,
-  plugins: [
-    // we want the serve
-    ...bundledConfig.plugins,
-  ]
-}
 
 
 const configs = [
-  !isNollup && createConfig(bundledConfig),
-  isNollup && createConfig(nollupConfig),
-  !isNollup && useDynamicImports && createConfig(dynamicConfig),
-  !isNollup && serviceWorkerConfig
+  !useNollup && createConfig(bundledConfig),
+  useNollup && createConfig(nollupConfig),
+  !useNollup && useDynamicImports && createConfig(dynamicConfig),
+  !useNollup && serviceWorkerConfig
 ].filter(Boolean)
 
 export default configs
@@ -154,6 +143,7 @@ function serve() {
     }
   };
 }
+
 
 function prerender() {
   return {
@@ -176,4 +166,17 @@ function dynamicTransform(contents) {
   return contents.toString().replace('__SCRIPT__', `
   <script type="module" defer src="/build/main.js"></script>	
 	`)
+}
+
+function createConfig(extend) {
+  return mergeRollupConfigs(baseConfig(), extend)
+}
+
+function mergeRollupConfigs(base, extend) {
+  Object.entries(extend).forEach(([key, value]) => {
+    if (Array.isArray(value)) base[key].push(...value)
+    else if (typeof value === 'object') Object.assign(base[key], value)
+    else base[key] = value
+  })
+  return base
 }
