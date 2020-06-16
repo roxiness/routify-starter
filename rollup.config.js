@@ -14,14 +14,22 @@ const staticDir = 'static'
 const distDir = 'dist'
 const buildDir = `${distDir}/build`
 const production = !process.env.ROLLUP_WATCH;
-const shouldPrerender = process.env.PRERENDER === "true" || !!production
-const useNollup = process.env.NOLLUP
-const useDynamicImports = process.env.BUNDLING === 'dynamic' || useNollup || !!production
-const transform = useDynamicImports  ? dynamicTransform : bundledTransform
-const browserUpdate = () => useNollup ? Hmr({ inMemory: true, public: staticDir, }) : livereload(distDir)
+const buildStaticExports = process.env.PRERENDER === "true" || !!production
+const isNollup = process.env.NOLLUP
+const useDynamicImports = process.env.BUNDLING === 'dynamic' || isNollup || !!production
+const useHmr = true
 
-del.sync(distDir + '/**')
+const liveUpdate = () => isNollup && useHmr
+  ? Hmr({ inMemory: true, public: staticDir, }) // refresh only updated code
+  : livereload(distDir) // refresh entire window when code is updated
 
+del.sync(distDir + '/**') // clear previous builds
+!production && spassr({ serveSpa: true, serveSsr: true }) // serve app
+
+
+/**
+ * Base config extended by dynamicConfig and baseConfig
+ */
 const baseConfig = () => ({
   input: `src/main.js`,
   output: {
@@ -31,42 +39,31 @@ const baseConfig = () => ({
   plugins: [
     copy({
       targets: [
-        { src: [staticDir + "/*", "!*/(__index.html)"], dest: distDir },
-        { src: `${staticDir}/__index.html`, dest: distDir, rename: '__app.html', transform },
+        { src: [`${staticDir}/*`, "!*/(__index.html)"], dest: distDir },
+        { src: [`${staticDir}/__index.html`], dest: distDir, rename: '__app.html', transform },
       ],
       copyOnce: true,
       flatten: false
     }),
     svelte({
-      // enable run-time checks when not in production
-      dev: !production,
-      hydratable: true, //todo set to false if possible
-      // we'll extract any component CSS out into
-      // a separate file — better for performance
+      dev: !production, // run-time checks      
+      // Extract component CSS — better performance
       css: css => {
         css.write(`${buildDir}/bundle.css`);
       },
       hot: !production,
     }),
 
-    // If you have external dependencies installed from
-    // npm, you'll most likely need these plugins. In
-    // some cases you'll need additional configuration —
-    // consult the documentation for details:
-    // https://github.com/rollup/rollup-plugin-commonjs
+    // resolve matching modules from current working directory
     resolve({
       browser: true,
-      dedupe: importee => importee === 'svelte' || importee.startsWith('svelte/')
+      dedupe: importee => !!importee.match(/svelte(\/|$)/)
     }),
     commonjs(),
 
-
-    // If we're building for production (npm run build
-    // instead of npm run dev), minify
-    production && terser(),
-    !production && serve(),
-    !production && browserUpdate(),
-    shouldPrerender && prerender(), //todo fix
+    production && terser(), // minify
+    !production && liveUpdate(),
+    buildStaticExports && prerender()
   ],
   watch: {
     clearScreen: false,
@@ -74,24 +71,19 @@ const baseConfig = () => ({
   }
 })
 
-
-// this should be instantiated so serve doesn't run every time
-const bundledConfig = {
+// extends baseConfig
+const bundledConfig = extendBase({
   inlineDynamicImports: true,
-  output: { format: 'iife', file: `${buildDir}/bundle.js` },
-  plugins: []
-}
+  output: { format: 'iife', file: `${buildDir}/bundle.js` }
+})
 
-const dynamicConfig = {
-  output: { format: 'esm', dir: buildDir }
-}
-
-const nollupConfig = {
-  ...dynamicConfig,
-  plugins: []
-}
+// extends baseConfig
+const dynamicConfig = extendBase({ output: { format: 'esm', dir: buildDir } })
 
 
+/**
+ * Can be deleted if service workers aren't used
+ */
 const serviceWorkerConfig = {
   input: `src/sw.js`,
   output: {
@@ -120,30 +112,19 @@ const serviceWorkerConfig = {
 }
 
 
-
+// Combine configs as needed
 const configs = [
-  !useNollup && createConfig(bundledConfig),
-  useNollup && createConfig(nollupConfig),
-  !useNollup && useDynamicImports && createConfig(dynamicConfig),
-  !useNollup && serviceWorkerConfig
+  useDynamicImports && dynamicConfig,
+  !isNollup && bundledConfig,
+  !isNollup && serviceWorkerConfig
 ].filter(Boolean)
 
 export default configs
 
 
-function serve() {
-  let started = false
-  return {
-    generateBundle() {
-      if (!started) {
-        console.log('STARTING SERVE')
-        started = true
-        spassr({ serveSpa: true, serveSsr: true })
-      }
-    }
-  };
-}
-
+/**
+ * Config helper functions
+ */
 
 function prerender() {
   return {
@@ -156,21 +137,13 @@ function prerender() {
   }
 }
 
-function bundledTransform(contents) {
-  return contents.toString().replace('__SCRIPT__', `
-	<script defer src="/build/bundle.js" ></script>
-	`)
+function transform(contents) {
+  return contents.toString().replace('__SCRIPT__', useDynamicImports
+    ? '<script type="module" defer src="/build/main.js"></script>'
+    : '<script defer src="/build/bundle.js"></script>')
 }
 
-function dynamicTransform(contents) {
-  return contents.toString().replace('__SCRIPT__', `
-  <script type="module" defer src="/build/main.js"></script>	
-	`)
-}
-
-function createConfig(extend) {
-  return mergeRollupConfigs(baseConfig(), extend)
-}
+function extendBase(extend) { return mergeRollupConfigs(baseConfig(), extend) }
 
 function mergeRollupConfigs(base, extend) {
   Object.entries(extend).forEach(([key, value]) => {
