@@ -15,16 +15,20 @@ const distDir = 'dist'
 const buildDir = `${distDir}/build`
 const production = !process.env.ROLLUP_WATCH;
 const buildStaticExports = process.env.PRERENDER === "true" || !!production
-const isNollup = process.env.NOLLUP
+const isNollup = !!process.env.NOLLUP
 const useDynamicImports = process.env.BUNDLING === 'dynamic' || isNollup || !!production
-const useHmr = true
+const useHmr = isNollup
 
-const liveUpdate = () => isNollup && useHmr
+const liveUpdate = () => useHmr
   ? Hmr({ inMemory: true, public: staticDir, }) // refresh only updated code
   : livereload(distDir) // refresh entire window when code is updated
 
 del.sync(distDir + '/**') // clear previous builds
-!production && spassr({ serveSpa: true, serveSsr: true }) // serve app
+!production && spassr({
+  serveSpa: true, // serve app
+  serveSsr: !isNollup, // Nollup doesn't need SSR
+  silent: isNollup // Nollup needs Spassr internally
+}) 
 
 
 /**
@@ -51,7 +55,7 @@ const baseConfig = () => ({
       css: css => {
         css.write(`${buildDir}/bundle.css`);
       },
-      hot: !production,
+      hot: useHmr,
     }),
 
     // resolve matching modules from current working directory
