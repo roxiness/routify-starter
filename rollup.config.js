@@ -8,7 +8,7 @@ import copy from 'rollup-plugin-copy'
 import del from 'del'
 import replace from '@rollup/plugin-replace';
 import { injectManifest } from 'rollup-plugin-workbox'
-import { spassr } from 'spassr/server'
+import { spassr } from 'spassr'
 
 const staticDir = 'static'
 const distDir = 'dist'
@@ -28,7 +28,7 @@ del.sync(distDir + '/**') // clear previous builds
   serveSpa: true, // serve app
   serveSsr: !isNollup, // Nollup doesn't need SSR
   silent: isNollup // Nollup needs Spassr internally
-}) 
+})
 
 
 /**
