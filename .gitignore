@@ -3,3 +3,4 @@
 .DS_Store
 **/.history
 /src/tmp/
+.routify

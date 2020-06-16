@@ -13,7 +13,7 @@
     "deploy:netlify": "cd scripts/netlify && npm run deploy",
     "rollup": "rollup -cw",
     "nollup": "nollup -c",
-    "routify": "routify -D -r src/tmp"
+    "routify": "routify -D -r .routify"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^13.0.0",

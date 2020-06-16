@@ -1,6 +1,6 @@
 <script>
   import { Router } from "@sveltech/routify";
-  import { routes } from "./tmp/routes";
+  import { routes } from "../.routify/routes";
 </script>
 
 <Router {routes} />
