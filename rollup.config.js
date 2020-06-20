@@ -10,26 +10,20 @@ import replace from '@rollup/plugin-replace';
 import { injectManifest } from 'rollup-plugin-workbox'
 import { spassr } from 'spassr'
 
+const isNollup = !!process.env.NOLLUP
+const production = !process.env.ROLLUP_WATCH;
+
+/**
+ * User config
+ */
 const staticDir = 'static'
 const distDir = 'dist'
 const buildDir = `${distDir}/build`
-const production = !process.env.ROLLUP_WATCH;
-const buildStaticExports = process.env.PRERENDER === "true" || !!production
-const isNollup = !!process.env.NOLLUP
+const buildStaticExports = process.env.PRERENDER !== "false" && !!production
 const useDynamicImports = process.env.BUNDLING === 'dynamic' || isNollup || !!production
-const useHmr = isNollup
 
-const liveUpdate = () => useHmr
-  ? Hmr({ inMemory: true, public: staticDir, }) // refresh only updated code
-  : livereload(distDir) // refresh entire window when code is updated
 
 del.sync(distDir + '/**') // clear previous builds
-!production && spassr({
-  serveSpa: true, // serve app
-  serveSsr: !isNollup, // Nollup doesn't need SSR
-  silent: isNollup // Nollup needs Spassr internally
-})
-
 
 /**
  * Base config extended by dynamicConfig and baseConfig
@@ -55,7 +49,7 @@ const baseConfig = () => ({
       css: css => {
         css.write(`${buildDir}/bundle.css`);
       },
-      hot: useHmr,
+      hot: isNollup,
     }),
 
     // resolve matching modules from current working directory
@@ -65,9 +59,12 @@ const baseConfig = () => ({
     }),
     commonjs(),
 
+    buildStaticExports && prerender(),
+
     production && terser(), // minify
-    !production && liveUpdate(),
-    buildStaticExports && prerender()
+    !production && isNollup && Hmr({ inMemory: true, public: staticDir, }), // refresh only updated code
+    !production && !isNollup && !Hmr && livereload(distDir), // refresh entire window when code is updated
+    !production && serve()
   ],
   watch: {
     clearScreen: false,
@@ -129,6 +126,17 @@ export default configs
 /**
  * Config helper functions
  */
+
+function serve() {
+  serve['started']
+  return !serve['started'] && (serve['started'] = true) && {
+    generateBundle: () => spassr({
+      serveSpa: true, // serve app
+      serveSsr: !isNollup, // Nollup doesn't need SSR
+      silent: isNollup // Nollup needs Spassr internally
+    })
+  }
+}
 
 function prerender() {
   return {
