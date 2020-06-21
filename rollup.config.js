@@ -63,8 +63,8 @@ const baseConfig = () => ({
 
     production && terser(), // minify
     !production && isNollup && Hmr({ inMemory: true, public: staticDir, }), // refresh only updated code
-    !production && !isNollup && !Hmr && livereload(distDir), // refresh entire window when code is updated
-    !production && serve()
+    !production && !isNollup && livereload(distDir), // refresh entire window when code is updated
+    !production && !isNollup && serve()
   ],
   watch: {
     clearScreen: false,
@@ -128,14 +128,19 @@ export default configs
  */
 
 function serve() {
-  serve['started']
-  return !serve['started'] && (serve['started'] = true) && {
-    generateBundle: () => spassr({
-      serveSpa: true, // serve app
-      serveSsr: !isNollup, // Nollup doesn't need SSR
-      silent: isNollup // Nollup needs Spassr internally
-    })
+  return {
+    generateBundle() {
+      if (!serve['started']) {
+        serve['started'] = true
+        return spassr({
+          serveSpa: true, // serve app
+          serveSsr: !isNollup, // Nollup doesn't need SSR
+          silent: isNollup // Nollup needs Spassr internally
+        })
+      }
+    }
   }
+
 }
 
 function prerender() {

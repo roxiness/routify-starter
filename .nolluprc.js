@@ -1,8 +1,8 @@
 module.exports = {
   hot: true,
-  contentBase: 'static',
+  contentBase: 'dist',
   publicPath: 'build',
-  proxy: {
-    '/': 'http://localhost:5000',
-  },
+  historyApiFallback: '__app.html',
+  port: 5000
+  // proxy: {    '/': 'http://localhost:5000'  } legacy. Needs spassr running.
 }
