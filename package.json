@@ -21,7 +21,7 @@
     "concurrently": "^5.2.0",
     "cross-env": "^7.0.2",
     "del": "^5.1.0",
-    "nollup": "jakobrosenberg/nollup#custom-api-fallback",
+    "nollup": "^0.12.0",
     "npm-run-all": "^4.1.5",
     "rollup": "^2.16.1",
     "rollup-plugin-copy": "^3.3.0",
