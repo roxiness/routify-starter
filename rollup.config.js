@@ -57,7 +57,7 @@ const baseConfig = () => ({
     }),
     commonjs(),
 
-    production && !useDynamicImports && prerender(), //comment this line to disable prerendering
+
     production && terser(), // minify
     !production && isNollup && Hmr({ inMemory: true, public: staticDir, }), // refresh only updated code
     !production && !isNollup && livereload(distDir), // refresh entire window when code is updated
@@ -72,7 +72,8 @@ const baseConfig = () => ({
 // extends baseConfig
 const bundledConfig = extendBase({
   inlineDynamicImports: true,
-  output: { format: 'iife', file: `${buildDir}/bundle.js` }
+  output: { format: 'iife', file: `${buildDir}/bundle.js` },
+  plugins: [production && prerender() ] //comment this line to disable prerendering  
 })
 
 // extends baseConfig
