@@ -1,9 +1,8 @@
 <script>
-  import { ready, url } from "@sveltech/routify";
-  export let showId;
+  import { ready, url, params } from "@sveltech/routify";
   let series = {};
 
-  $: updateShow(showId);
+  $: updateShow($params.showId);
 
   function updateShow(id) {
     fetch(`https://api.tvmaze.com/shows/${id}`)
