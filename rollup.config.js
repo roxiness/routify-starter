@@ -19,9 +19,7 @@ const production = !process.env.ROLLUP_WATCH;
 const staticDir = 'static'
 const distDir = 'dist'
 const buildDir = `${distDir}/build`
-const buildStaticExports = process.env.PRERENDER !== "false" && !!production
 const useDynamicImports = process.env.BUNDLING === 'dynamic' || isNollup || !!production
-
 
 del.sync(distDir + '/**') // clear previous builds
 
@@ -59,8 +57,7 @@ const baseConfig = () => ({
     }),
     commonjs(),
 
-    buildStaticExports && prerender(),
-
+    production && !useDynamicImports && prerender(), //comment this line to disable prerendering
     production && terser(), // minify
     !production && isNollup && Hmr({ inMemory: true, public: staticDir, }), // refresh only updated code
     !production && !isNollup && livereload(distDir), // refresh entire window when code is updated
