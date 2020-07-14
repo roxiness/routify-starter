@@ -90,9 +90,10 @@ function baseConfig(config, ctx) {
     return rollupWrapper(rollupConfig, ctx)
 
     function transform(contents) {
-        return contents.toString().replace('__SCRIPT__', dynamicImports
-            ? '<script type="module" defer src="/build/main.js"></script>'
-            : '<script defer src="/build/bundle.js"></script>')
+        const scriptTag = typeof config.scriptTag != 'undefined' ?
+        config.scriptTag : '<script type="module" defer src="/build/main.js"></script>'
+        const bundleTag = '<script defer src="/build/bundle.js"></script>'
+        return contents.toString().replace('__SCRIPT__', dynamicImports ? scriptTag : bundleTag)
     }
 }
 
