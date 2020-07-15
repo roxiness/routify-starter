@@ -44,20 +44,39 @@ html {
 
 .hero {
   position: absolute;
-  top: 33%;
+  top: calc(100px + 30%);
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
+  & h1 {
+    font-size: 3em;
+    color: gray(20);
+  }
   & code {
     font-size: 1.3em;
     background: rgba(0, 0, 0, 0.7);
     color: rgba(255, 255, 255, 0.9);
     padding: 24px;
     white-space: nowrap;
+    display: block;
   }
-  & h1 {
-    margin-bottom: 64px;
-    font-size: 3em;
-    color: gray(20)
+  & ul {
+    margin: 32px 0;
+    padding: 0;
+    color: rgba(0, 0, 0, 0.7);
+    font-weight: bold;
+    list-style: none;
+    display: inline-block;
+    & li {
+      text-align: left;
+      display: inline;
+      margin: 0;
+      text-align: left;
+    }
+    & li:before {
+      content: ' ';
+      margin: 8px;
+      display: block;
+    }
   }
 }
