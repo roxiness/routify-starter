@@ -4,6 +4,7 @@ Starter template for [Routify](https://github.com/sveltech/routify)
 
 ### Preview
 [default template](https://example.routify.dev/)
+
 [blog template](https://blog-example.routify.dev/)
 
 ### Get started
