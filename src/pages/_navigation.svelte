@@ -3,7 +3,7 @@
 </script>
 
 <nav class="header">
-  {#each $layout.parent.children as node}
-    <a href={$url(node.path)} class:active={$isActive(node.path)}>{node.title}</a>
+  {#each $layout.parent.children as {path, title}}
+    <a href={$url(path)} class:active={$isActive(path)}>{title}</a>
   {/each}
 </nav>

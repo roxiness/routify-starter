@@ -6,7 +6,8 @@ body {
 }
 
 body {
-  color: #777;
+  /* color: #777; */
+  color: rgba(0,0,0,0.62);
   margin: 0;
   padding: 8px;
   box-sizing: border-box;
@@ -15,10 +16,10 @@ body {
 }
 
 a {
-  color: rgb(0, 100, 200);
-  text-decoration: none;
+  color: rgba(0,0,0,0.7);  
+  
   &:visited {
-    color: #555;
+    color: rgba(0,0,0,0.6);
   }
   &:hover {
     text-decoration: underline;

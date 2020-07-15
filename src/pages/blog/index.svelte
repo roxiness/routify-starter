@@ -1,7 +1,5 @@
 <script>
-  // @ts-check
   import { url, layout } from "@sveltech/routify";
-  import { format, formatRelative, parseISO } from "date-fns";
   import marked from "marked";
 
   const posts = $layout.parent.children
@@ -12,10 +10,10 @@
 <h1>Blog</h1>
 
 <ul class="posts">
-  {#each posts as node}
+  {#each posts as {meta, path}}
     <li class="card">
-      <a class="title" href={$url(node.path)}>{node.meta.frontmatter.title}</a>
-      {@html marked(node.meta.frontmatter.summary)}
+      <a class="title" href={$url(path)}>{meta.frontmatter.title}</a>
+      {@html marked(meta.frontmatter.summary)}
     </li>
   {/each}
 </ul>
