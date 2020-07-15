@@ -14,11 +14,9 @@
 
   <ul class="posts">
     {#each posts as node}
-      <li class="posts__post">
-        <div class="c-content">
-          <a href={$url(node.path)}>{node.meta.frontmatter.title}</a>
-          {@html marked(node.meta.frontmatter.summary)}
-        </div>
+      <li class="card">
+          <a class="title" href={$url(node.path)}>{node.meta.frontmatter.title}</a>
+          {@html marked(node.meta.frontmatter.summary)}        
       </li>
     {/each}
   </ul>
