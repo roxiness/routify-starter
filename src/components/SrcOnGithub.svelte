@@ -23,7 +23,7 @@
   }
 </style>
 
-<a rel="prefetch" href="https://github.com/sveltech/routify-starter/tree/blog/src/pages{$page.__file.filepath}">
+<a rel="prefetch" href="https://github.com/sveltech/routify-starter/tree/blog/src/pages{$page.path}.{$page.__file.ext}">
   <div class="icon">🍨</div>
   What's in
   <br />
