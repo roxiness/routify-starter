@@ -2,10 +2,16 @@
 
 Starter template for [Routify](https://github.com/sveltech/routify)
 
+### Preview
+[default template](https://example.routify.dev/)
+[blog template](https://blog-example.routify.dev/)
+
 ### Get started
 
+#### Default starter template
 To use this starter run `npx @sveltech/routify init` in an empty folder.
 
+#### Blog template
 To try the blog example, run `npx @sveltech/routify init --branch blog`
 
 Alternatively, you can clone this repo.
