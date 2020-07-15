@@ -9,15 +9,13 @@
     .sort((a, b) => b.meta["frontmatter"].published.localeCompare(a.meta["frontmatter"].published));
 </script>
 
-<div class="c-container-vertical">
-  <h1>Blog</h1>
+<h1>Blog</h1>
 
-  <ul class="posts">
-    {#each posts as node}
-      <li class="card">
-          <a class="title" href={$url(node.path)}>{node.meta.frontmatter.title}</a>
-          {@html marked(node.meta.frontmatter.summary)}        
-      </li>
-    {/each}
-  </ul>
-</div>
+<ul class="posts">
+  {#each posts as node}
+    <li class="card">
+      <a class="title" href={$url(node.path)}>{node.meta.frontmatter.title}</a>
+      {@html marked(node.meta.frontmatter.summary)}
+    </li>
+  {/each}
+</ul>

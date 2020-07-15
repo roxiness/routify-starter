@@ -5,6 +5,7 @@ author: jakobrosenberg
 summary: |
   #### Summary of my second post
   Read on
+layout: blog
 ---
 
 # {title}
