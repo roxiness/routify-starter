@@ -6,6 +6,8 @@ Starter template for [Routify](https://github.com/sveltech/routify)
 
 To use this starter run `npx @sveltech/routify init` in an empty folder.
 
+To try the blog example, run `npx @sveltech/routify init --branch blog`
+
 Alternatively, you can clone this repo.
 
 ### Npm scripts
