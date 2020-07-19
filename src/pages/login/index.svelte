@@ -1,21 +1,12 @@
 <script>
-  import { authStore } from "../../auth";
-  const { signin } = authStore;
+	import { authStore } from '../../auth'
+	const { signin } = authStore
 </script>
 
-<style>
-  .center-all {
-    height: 100%;
-    display: grid;
-    justify-content: space-evenly;
-    align-content: space-around;
-  }
-</style>
-
 <div class="center-all">
-  <div>
-    <h3>We're super lazy about our login form</h3>
-    <p>So we leave it to auth0</p>
-    <button on:click={signin}>sign in</button>
-  </div>
+	<div>
+		<h3>We're super lazy about our login form</h3>
+		<p>So we leave it to auth0</p>
+		<button on:click={signin}>sign in</button>
+	</div>
 </div>

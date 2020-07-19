@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store'
-import createAuth0Client from "@auth0/auth0-spa-js";
+import createAuth0Client from "@auth0/auth0-spa-js"
 
 const AUTH_CONFIG = {
     domain: "routify.eu.auth0.com",
@@ -26,9 +26,11 @@ export const authStore = {
         authenticated.set(true)
     },
     async init() {
+        console.log('initializing auth')
         const { user, authenticated, loading } = authStore
         authStore.auth0 = await createAuth0Client(AUTH_CONFIG)
         loading.set(false)
+        console.log('did false')
         user.set(await authStore.auth0.getUser())
         authenticated.set(true)
     }
