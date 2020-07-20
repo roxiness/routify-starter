@@ -42,7 +42,7 @@ nav a:visited {
 	display: inline-block;
 	text-transform: uppercase;
 	color: #777;
-	padding: calc(2vw);
+	padding: 24px; calc(2vw);
 }
 
 nav img[alt^='profile - '] {
