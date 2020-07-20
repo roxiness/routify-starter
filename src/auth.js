@@ -7,31 +7,41 @@ const AUTH_CONFIG = {
     cacheLocation: 'localstorage'
 }
 
-export const authStore = {
-    loading: writable(true),
-    authenticated: writable(false),
-    user: writable(null),
-    auth0: null,
-    async signin() {
-        const { authenticated, user, auth0 } = authStore
-        await auth0.loginWithPopup()
-        user.set(await auth0.getUser())
-        authenticated.set(true)
-    },
-    async signout() {
-        const { authenticated, user, auth0 } = authStore
-        authenticated.set(false)
-        await auth0.logout()
-        user.set(await authStore.auth0.getUser())
-        authenticated.set(true)
-    },
-    async init() {
-        console.log('initializing auth')
-        const { user, authenticated, loading } = authStore
-        authStore.auth0 = await createAuth0Client(AUTH_CONFIG)
+export const authStore = createAuthStore()
+
+function createAuthStore() {
+    const loading = writable(true)
+    const authenticated = writable(false)
+    const user = writable(null)
+    let auth0 = null
+
+    
+    async function init(){
+        auth0 = await createAuth0Client(AUTH_CONFIG)
+
+        // update store
+        user.set(await auth0.getUser())        
         loading.set(false)
-        console.log('did false')
-        user.set(await authStore.auth0.getUser())
         authenticated.set(true)
     }
+
+    async function signin() {
+        //display popup
+        await auth0.loginWithPopup()
+
+        //update store
+        user.set(await auth0.getUser())
+        authenticated.set(true)
+    }
+
+    async function signout() {
+        // logout
+        await auth0.logout()
+
+        // update store
+        user.set(await auth0.getUser())
+        authenticated.set(false)
+    }
+
+    return { loading, authenticated, user, auth0, signin, signout, init }
 }

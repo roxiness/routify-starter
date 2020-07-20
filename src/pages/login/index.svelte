@@ -4,9 +4,9 @@
 </script>
 
 <div class="center-all">
-	<div>
+	<div class="card">
 		<h3>We're super lazy about our login form</h3>
 		<p>So we leave it to auth0</p>
-		<button on:click={signin}>sign in</button>
+		<button class="button" on:click={signin}>sign in</button>
 	</div>
 </div>

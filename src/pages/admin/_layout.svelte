@@ -12,14 +12,16 @@
 	$ready()
 </script>
 
-{#if !routify.inBrowser}
-	SPA only
-{:else if $loading}
-	<div class="center-all">
-		<h1>Loading...</h1>
-	</div>
-{:else if $user}
-	<slot />
-{:else}
-	<Login />
-{/if}
+<div class="admin-module">
+	{#if !window.routify.inBrowser}
+		SPA only
+	{:else if $loading}
+		<div class="center-all">
+			<h1>Loading...</h1>
+		</div>
+	{:else if $user}
+		<slot />
+	{:else}
+		<Login />
+	{/if}
+</div>

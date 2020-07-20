@@ -1,3 +1,3 @@
 <div class="center-all">
-    <h1>ADMIN</h1>
+    <h1>ABOUT</h1>
 </div>
