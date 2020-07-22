@@ -7,22 +7,33 @@ Starter template for [Routify](https://github.com/sveltech/routify)
 
 [blog template](https://blog-example.routify.dev/)
 
+[auth template](https://auth-example.routify.dev/)
+
 ### Get started
 
-#### Default starter template
-To use this starter run `npx @sveltech/routify init` in an empty folder.
+#### Starter templates
+| Template                                           | Description                                |
+|----------------------------------------------------|--------------------------------------------|
+| [master](https://example.routify.dev/)    | Default template, includes examples folder |
+| [blog](https://blog-example.routify.dev/) | Generates a blog from local markdown posts. Includes mdsvex |
+| [auth](https://auth-example.routify.dev/) | Embedded login on protected pages. Includes Auth0 |
 
-#### Blog template
-To try the blog example, run `npx @sveltech/routify init --branch blog`
+To use a template, run
 
-Alternatively, you can clone this repo.
+`npx @sveltech/routify init`
+
+or
+
+`npx @sveltech/routify init --branch <branch-name>`.
+
+
 
 ### Npm scripts
 
 | Syntax           | Description                                                                       |
 |------------------|-----------------------------------------------------------------------------------|
 | `dev`            | Development (port 5000)                                                           |
-| `dev:nollup`     | Development with crazy fast rebuilds (port 5000)                                                           |
+| `dev:nollup`     | Development with crazy fast rebuilds (port 5000)                                  |
 | `dev-dynamic`    | Development with dynamic imports                                                  |
 | `build`          | Build a bundled app with SSR + prerendering and dynamic imports                   |
 | `serve`          | Run after a build to preview. Serves SPA on 5000 and SSR on 5005                  |
