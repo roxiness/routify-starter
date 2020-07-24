@@ -55,6 +55,7 @@ function baseConfig(config, ctx) {
 
     const _rollupConfig = {
         inlineDynamicImports: !dynamicImports,
+        preserveEntrySignatures: false,
         input: `src/main.js`,
         output: {
             name: 'routify_app',
