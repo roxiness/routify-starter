@@ -5,11 +5,11 @@ Starter template for [Routify](https://github.com/sveltech/routify)
 ### Get started
 
 #### Starter templates
-| Template                                           | Description                                |
-|----------------------------------------------------|--------------------------------------------|
-| [master](https://example.routify.dev/)    | Default template, includes examples folder |
+| Template                                  | Description                                                 |
+|-------------------------------------------|-------------------------------------------------------------|
+| [master](https://example.routify.dev/)    | Default template, includes examples folder                  |
 | [blog](https://blog-example.routify.dev/) | Generates a blog from local markdown posts. Includes mdsvex |
-| [auth](https://auth-example.routify.dev/) | Embedded login on protected pages. Includes Auth0 |
+| [auth](https://auth-example.routify.dev/) | Embedded login on protected pages. Includes Auth0           |
 
 To use a template, run
 
@@ -19,9 +19,7 @@ or
 
 `npx @sveltech/routify init --branch <branch-name>`.
 
-
-
-### Npm scripts
+### npm scripts
 
 | Syntax           | Description                                                                       |
 |------------------|-----------------------------------------------------------------------------------|
