@@ -10,7 +10,7 @@
   </p>
 
   <p>Alternatively, the widget can grab the leftover URL itself.</p>
-  <p>This allows for reusable navigatable components.</p>
+  <p>This allows for reusable navigable components.</p>
 </div>
 
 <CrudWidget data={users} />
