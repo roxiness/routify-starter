@@ -9,22 +9,13 @@
 		<h1>Routify auth example</h1>
 		<h5>Notes:</h5>
 		<ul>
-			<li>
-				Auth0
-			</li>
-			<li>
-				Embedded login form on protected pages
-			</li>
-			<li>
-				No need to redirect users
-			</li>
-			<li>
-				No pointless auth in SSR
-			</li>
-			<li>
-				No need to proxy authentication through a server
-			</li>
+			<li>Auth0</li>
+			<li>Embedded login form on protected pages</li>
+			<li>No need to redirect users</li>
+			<li>No pointless auth in SSR</li>
+			<li>No need to proxy authentication through a server</li>
 		</ul>
-		
+				
+		<code>npm @sveltech/routify init --branch auth</code>
 	</div>
 </div>
