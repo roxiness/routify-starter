@@ -12,9 +12,9 @@
 	$ready()
 </script>
 
-<div class="admin-module">
+<div class="admin-module" class:not-authed={!$user}>
 	{#if !window.routify.inBrowser}
-		SPA only
+		Hello bot. This page is only available to humans.
 	{:else if $loading}
 		<div class="center-all">
 			<h1>Loading...</h1>
