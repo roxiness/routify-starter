@@ -42,7 +42,9 @@ nav a:visited {
 	display: inline-block;
 	text-transform: uppercase;
 	color: #777;
-	padding: 24px; calc(2vw);
+	padding: 24px;
+	padding-left: calc(2vw);
+	padding-right: calc(2vw);
 }
 
 nav img[alt^='profile - '] {
@@ -73,6 +75,10 @@ header {
 	background-attachment: fixed;
 	background-size: cover;
 }
+.admin-module.not-authed {
+	background-color: #808080;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cpolygon fill='%23666666' points='957 450 539 900 1396 900'/%3E%3Cpolygon fill='%23545454' points='957 450 872.9 900 1396 900'/%3E%3Cpolygon fill='%23636363' points='-60 900 398 662 816 900'/%3E%3Cpolygon fill='%23515151' points='337 900 398 662 816 900'/%3E%3Cpolygon fill='%23606060' points='1203 546 1552 900 876 900'/%3E%3Cpolygon fill='%234e4e4e' points='1203 546 1552 900 1162 900'/%3E%3Cpolygon fill='%235d5d5d' points='641 695 886 900 367 900'/%3E%3Cpolygon fill='%234b4b4b' points='587 900 641 695 886 900'/%3E%3Cpolygon fill='%235a5a5a' points='1710 900 1401 632 1096 900'/%3E%3Cpolygon fill='%23484848' points='1710 900 1401 632 1365 900'/%3E%3Cpolygon fill='%23575757' points='1210 900 971 687 725 900'/%3E%3Cpolygon fill='%23454545' points='943 900 1210 900 971 687'/%3E%3C/svg%3E");
+}
 
 /* GENERICS */
 .card {
@@ -99,4 +105,12 @@ header {
 	display: grid;
 	justify-content: space-evenly;
 	align-content: space-around;
+}
+code {
+	margin-top: 48px;
+	background: #444;
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 16px;
 }
