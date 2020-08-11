@@ -1,5 +1,5 @@
 <script>
-  import { url } from "@sveltech/routify";
+  import { url } from "@roxi/routify";
   import NavLinks from "./_components/NavLinks.svelte";
   import RenderStatus from "./_components/RenderStatus.svelte";
 </script>

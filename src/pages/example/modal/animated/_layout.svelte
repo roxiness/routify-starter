@@ -1,5 +1,5 @@
 <script>
-  import { url, context, afterPageLoad } from "@sveltech/routify";
+  import { url, context, afterPageLoad } from "@roxi/routify";
   import { crossfade, fade } from "svelte/transition";
   import Target from "./_target.svelte";
 

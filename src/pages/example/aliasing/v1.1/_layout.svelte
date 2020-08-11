@@ -1,5 +1,5 @@
 <script>
-  import { url } from "@sveltech/routify";
+  import { url } from "@roxi/routify";
 </script>
 
 <p>V1.1 has only one file: feature2.svelte</p>
@@ -8,7 +8,7 @@
 <code>
   <pre>
     /** _fallback.svelte **/
-    import {`{(goto, leftover)}`} from '@sveltech/routify'
+    import {`{(goto, leftover)}`} from '@roxi/routify'
     $goto('../../v1/'+$leftover, null, true, true)
   </pre>
 </code>

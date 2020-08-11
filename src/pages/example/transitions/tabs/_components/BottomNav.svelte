@@ -1,5 +1,5 @@
 <script>
-  import { url, isActive } from "@sveltech/routify";
+  import { url, isActive } from "@roxi/routify";
   export let urls, height;
   let linkElems = [];
   let overlay;

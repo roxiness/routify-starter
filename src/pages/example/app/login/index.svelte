@@ -1,6 +1,6 @@
 <script>
   import { user } from "../_store.js";
-  import { goto, url } from "@sveltech/routify";
+  import { goto, url } from "@roxi/routify";
 
   let username = "anything";
   let password = "goes";

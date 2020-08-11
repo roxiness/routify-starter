@@ -1,5 +1,5 @@
 <script>
-  import { leftover } from "@sveltech/routify";
+  import { leftover } from "@roxi/routify";
   import list from "./_list.svelte";
   import update from "./_update.svelte";
   import view from "./_view.svelte";

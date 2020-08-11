@@ -1,8 +1,8 @@
 <script>
-  import { TabsTransition } from "@sveltech/routify/decorators";
+  import { TabsTransition } from "@roxi/routify/decorators";
   import { writable } from "svelte/store";
   import BottomNav from "./_components/BottomNav.svelte";
-  import { url, isActive } from "@sveltech/routify";
+  import { url, isActive } from "@roxi/routify";
 
   const width = writable();
   const color = writable();

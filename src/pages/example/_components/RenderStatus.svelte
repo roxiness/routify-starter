@@ -1,6 +1,6 @@
 <script>
   import { fade } from "svelte/transition";
-  import { route } from "@sveltech/routify";
+  import { route } from "@roxi/routify";
 
   let show = false;
   let render;
