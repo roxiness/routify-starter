@@ -16,6 +16,6 @@
 			<li>No need to proxy authentication through a server</li>
 		</ul>
 				
-		<code>npm @sveltech/routify init --branch auth</code>
+		<code>npx @sveltech/routify init --branch auth</code>
 	</div>
 </div>
