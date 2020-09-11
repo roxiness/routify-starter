@@ -51,6 +51,15 @@ See [src/pages/example/api/[showId].svelte](https://github.com/sveltech/routify-
 * For SPA redirect to `__dynamic.html`.
 * For SSR redirect to the lambda function or express server.
 
+### Typescript
+
+For Typescript, we recommend @lamualfa's excellent [setup-routify-ts](https://github.com/lamualfa/setup-routify-ts/)
+
+New project: `npx setup-routify-ts init <project-name> [routify-init-args]`
+
+Existing project: `npx setup-routify-ts convert [project-directory]`
+
+
 ### Issues?
 
 File on Github! See https://github.com/sveltech/routify/issues .
