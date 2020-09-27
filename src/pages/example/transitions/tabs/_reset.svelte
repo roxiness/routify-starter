@@ -1,6 +1,6 @@
 <script>
-  import { TabsTransition } from "@sveltech/routify/decorators";
   import { writable } from "svelte/store";
+  import TabsTransition from "./_components/TabsTransition.svelte";
   import BottomNav from "./_components/BottomNav.svelte";
   import { url, isActive } from "@sveltech/routify";
 
