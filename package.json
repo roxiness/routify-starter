@@ -30,7 +30,7 @@
     "spassr": "^2.1.3"
   },
   "dependencies": {
-    "@roxi/routify": "^2.1.3-next-major",
+    "@roxi/routify": "^2.1.4-next-major",
     "fs-extra": "^9.0.1",
     "postcss-import": "^12.0.1",
     "rollup-plugin-workbox": "^5.2.1",
