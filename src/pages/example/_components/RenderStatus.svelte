@@ -1,20 +1,11 @@
 <script>
   import { fade } from "svelte/transition";
-  import { route } from "@roxi/routify";
 
-  let show = false;
-  let render;
-  $: moved = !!$route.prev;
-  [...document.getElementsByTagName("meta")].forEach(elem => {
-    render = elem.dataset.render || render;
-  });
-
-  $: lastRender = moved ? "dynamic" : render || "spa";
-  $: lastRender &&
-    (show = true) &&
-    setTimeout(() => {
-      show = false;
-    }, 3000);
+  let show = true;
+  let render = window.__preRendered ? "prerender" : window.__ssrRendered ? "ssr" : "spa";
+  setTimeout(() => {
+    show = false;
+  }, 3000);
 </script>
 
 <style>
@@ -31,5 +22,5 @@
 </style>
 
 {#if show}
-  <div transition:fade|local class="box">source: {lastRender}</div>
-{/if}
+  <div transition:fade|local class="box">source: {render}</div>
+{/if}asdasdasdasdsaasdasd123asd

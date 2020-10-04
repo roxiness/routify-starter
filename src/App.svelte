@@ -4,7 +4,7 @@
 </script>
 
 <style  global>
-  @import "../static/global.css";
+  @import "../assets/global.css";
 </style>
 
 <Router {routes} />
