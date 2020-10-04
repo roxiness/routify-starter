@@ -43,5 +43,10 @@
     "extensions": "svelte,html,svx,md",
     "dynamicImports": true,
     "routifyDir": ".routify"
+  },
+  "spank": {
+    "blacklist": [
+      "/example/modal/basic/4"
+    ]
   }
 }
