@@ -5,9 +5,11 @@ const { tossr } = require('tossr')
 // const template = fs.readFileSync(require.resolve('../__app.html'), 'utf8')
 
 module.exports = async (req, res) => {
-    console.log('same', fs.readdirSync('.'))
-    console.log('sparent', fs.readdirSync('..'))
-    res.send('hello')
+
+    res.send(JSON.stringify({
+        'same': fs.readdirSync('.'),
+        'parent': fs.readdirSync('..')
+    }, null, 2))
     // const html = await tossr(template, script, req.url)
     // res.send(html + '\n<!--ssr rendered-->')
 }
