@@ -1,12 +1,17 @@
 {
-    "version": 2,
-    "routes": [
-        {
-            "handle": "filesystem"
-        },
-        {
-            "src": "/.*",
-            "dest": "/api/vercel-ssr.js"
-        }
-    ]
+  "version": 2,
+  "routes": [
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/.*",
+      "dest": "/api/vercel-ssr.js"
+    }
+  ],
+  "functions": {
+    "api/vercel-ssr.js": {
+      "includeFiles": "**"
+    }
+  }
 }
