@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "run-p routify rollup",
     "dev:nollup": "run-p routify nollup",
-    "build": "routify -b && rollup -c",
+    "build": "routify -b && rollup -c && spank",
     "now-build": "routify -b && rollup -c",
     "serve": "spassr --ssr",
     "export": "routify export",
