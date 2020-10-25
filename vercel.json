@@ -1,5 +1,10 @@
 {
   "version": 2,
+  "functions": {
+    "api/vercel-ssr/index.js": {
+      "includeFiles": "dist/**"
+    }
+  },
   "routes": [
     {
       "handle": "filesystem"
@@ -8,10 +13,5 @@
       "src": "/.*",
       "dest": "/api/vercel-ssr/index.js"
     }
-  ],
-  "functions": {
-    "api/vercel-ssr/index.js": {
-      "includeFiles": "dist/**"
-    }
-  }
+  ]
 }
