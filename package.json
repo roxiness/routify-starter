@@ -8,9 +8,6 @@
     "now-build": "routify -b && rollup -c",
     "serve": "spassr --ssr",
     "export": "routify export",
-    "build:docker": "npm run build && ./scripts/docker/docker-build.sh",
-    "deploy:now": "cd scripts/now && npm run deploy",
-    "deploy:netlify": "cd scripts/netlify && npm run deploy",
     "rollup": "rollup -cw",
     "nollup": "nollup -c",
     "routify": "routify"
