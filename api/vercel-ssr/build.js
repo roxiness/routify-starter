@@ -5,8 +5,8 @@ const { rollup } = require('rollup')
 
 
 const shouldBuild = process.env.NOW_GITHUB_DEPLOYMENT
-const script = readFileSync(require.resolve('../../dist/build/main.js'), 'utf8')
-const bundlePath = require.resolve('../../dist/build/bundle.js')
+const script = resolve(__dirname, '../../dist/build/main.js')
+const bundlePath = resolve(__dirname, '../../dist/build/bundle.js')
 
 if (shouldBuild)
     build()
