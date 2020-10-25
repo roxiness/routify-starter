@@ -13,5 +13,5 @@
     "api/vercel-ssr/index.js": {
       "includeFiles": "dist/**"
     }
-  },
+  }
 }
