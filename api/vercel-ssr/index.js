@@ -8,7 +8,8 @@ module.exports = async (req, res) => {
 
     res.send(JSON.stringify({
         'same': fs.readdirSync(__dirname),
-        'parent': fs.readdirSync(__dirname+'/..')
+        'parent': fs.readdirSync(__dirname+'/..'),
+        'grandparent': fs.readdirSync(__dirname+'/../..')
     }, null, 2))
     // const html = await tossr(template, script, req.url)
     // res.send(html + '\n<!--ssr rendered-->')
