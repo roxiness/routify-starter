@@ -11,7 +11,7 @@
   ],
   "functions": {
     "api/vercel-ssr/index.js": {
-      "includeFiles": "build/**"
+      "includeFiles": "dist/**"
     }
-  }
+  },
 }
