@@ -14,7 +14,7 @@ else
 
 
 function build() {
-    execSync('npm run now-build', { cwd: resolve('..', '..') })
+    execSync('npm install && npm run now-build', { cwd: resolve('..', '..'), stdio: 'inherit' })
 }
 
 
