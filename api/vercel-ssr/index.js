@@ -2,10 +2,10 @@ const fs = require('fs')
 const { resolve } = require('path')
 const { tossr } = require('tossr')
 
-// const script = fs.readFileSync(require.resolve('../build/main.js'), 'utf8')
-// const template = fs.readFileSync(require.resolve('../__app.html'), 'utf8')
-const template = resolve('..', '..', '__app.html')
-const script = resolve('..', '../build/main.js')
+const script = fs.readFileSync(require.resolve('../../build/main.js'), 'utf8')
+const template = fs.readFileSync(require.resolve('../../__app.html'), 'utf8')
+// const template = resolve('..', '..', '__app.html')
+// const script = resolve('..', '../build/main.js')
 
 module.exports = async (req, res) => {
 
