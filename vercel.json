@@ -6,7 +6,7 @@
     },
     {
       "src": "/.*",
-      "dest": "/api/vercel-ssr.js"
+      "dest": "/api/vercel-ssr/index.js"
     }
   ],
   "functions": {
