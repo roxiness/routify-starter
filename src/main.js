@@ -10,7 +10,7 @@ export default app;
 
 // if ('serviceWorker' in navigator) {
 //     import('workbox-window').then(async ({ Workbox }) => {
-//         const wb = new Workbox('/build/serviceworker.js')
+//         const wb = new Workbox('/serviceworker.js')
 //         const registration = await wb.register()
 //         wb.addEventListener('installed', () => (console.log('installed service worker')))
 //         wb.addEventListener('externalinstalled', () => (console.log('installed service worker')))  
