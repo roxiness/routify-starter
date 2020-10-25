@@ -6,11 +6,11 @@
     },
     {
       "src": "/.*",
-      "dest": "/api/vercel-ssr.js"
+      "dest": "/api/vercel-ssr/index.js"
     }
   ],
   "functions": {
-    "api/vercel-ssr.js": {
+    "api/vercel-ssr/index.js": {
       "includeFiles": "build/**"
     }
   }
