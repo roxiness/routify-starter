@@ -3,6 +3,6 @@
     "vercel-build": "node ./build.js"
   },
   "devDependencies": {
-    "esbuild": "^0.7.21"
+    "esbuild": "^0.7.7"
   }
 }
