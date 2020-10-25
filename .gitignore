@@ -6,3 +6,4 @@
 .routify
 .netlify
 assets/build
+.vercel
