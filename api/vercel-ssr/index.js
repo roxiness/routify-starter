@@ -14,7 +14,7 @@ module.exports = async (req, res) => {
     //     'parent': fs.readdirSync(__dirname+'/..'),
     //     'grandparent': fs.readdirSync(__dirname+'/../..')
     // }, null, 2))
-    const html = await tossr(template, script, req.url)
+    const html = await tossr(template, script, req.url, { inlineDynamicImports: true })
     res.send(html + '\n<!--ssr rendered-->')
 }
 
