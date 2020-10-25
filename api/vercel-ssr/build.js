@@ -1,6 +1,6 @@
 const { resolve } = require('path')
 const {existsSync, readdirSync} = require('fs')
-const { execFileSync } = require('child_process')
+const { execFileSync, execSync, spawnSync } = require('child_process')
 
 
 const shouldBuild = process.env.NOW_GITHUB_DEPLOYMENT
@@ -14,7 +14,7 @@ else
 
 
 function build() {
-    execFileSync('npm run now-build', { cwd: resolve('..', '..') })
+    execSync('npm run now-build', { cwd: resolve('..', '..') })
 }
 
 
