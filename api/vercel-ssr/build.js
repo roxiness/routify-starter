@@ -14,7 +14,7 @@ else
 
 
 function build() {
-    execFileSync('yarn run now-build', { cwd: resolve('..', '..') })
+    execFileSync('npm run now-build', { cwd: resolve('..', '..') })
 }
 
 
