@@ -3,7 +3,7 @@ const { existsSync } = require('fs')
 const { execSync } = require('child_process')
 const { rollup } = require('rollup')
 
-const shouldBuildSpa = process.env.NOW_GITHUB_DEPLOYMENT
+const shouldBuildSpa = process.env.NOW_GITHUB_DEPLOYMENT || process.env.NOW_BUILDER
 const script = resolve(__dirname, '../../dist/build/main.js')
 const bundlePath = resolve(__dirname, '../../dist/build/bundle.js')
 
