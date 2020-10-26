@@ -1,43 +1,33 @@
 const { resolve } = require('path')
-const { existsSync, readdirSync, readFileSync } = require('fs')
-const { execFileSync, execSync, spawnSync } = require('child_process')
+const { existsSync } = require('fs')
+const { execSync } = require('child_process')
 const { rollup } = require('rollup')
 
-
-const shouldBuild = process.env.NOW_GITHUB_DEPLOYMENT
+const shouldBuildSpa = process.env.NOW_GITHUB_DEPLOYMENT
 const script = resolve(__dirname, '../../dist/build/main.js')
 const bundlePath = resolve(__dirname, '../../dist/build/bundle.js')
 
-if (shouldBuild)
-    build()
-else
-    waitForAppToExist()
-
-inlineDynamicImports()
+build()
 
 
-function build() {
-    execSync('npm install && npm run now-build', { cwd: resolve('..', '..'), stdio: 'inherit' })
+async function build() {
+    if (shouldBuildSpa)
+        execSync('npm install && npm run now-build', { cwd: resolve('..', '..'), stdio: 'inherit' })
+    else
+        await waitForAppToExist()
+
+    buildSSRBundle()
 }
 
 async function waitForAppToExist() {
-    let appExists = false
-    console.log(process.env)
-    while (!appExists) {
-        console.log({
-
-            'same': readdirSync(__dirname),
-            'parent': readdirSync(__dirname + '/..'),
-            'grandparent': readdirSync(__dirname + '/../..')
-        })
-        console.log(`checking if ../../dist/build/main.js exists`)
-        appExists = existsSync('../../dist/build/main.js')
+    while (!existsSync(script)) {
+        console.log(`checking if "${script}" exists`)
         await new Promise(r => setTimeout(r, 2000))
     }
-    console.log(`../../dist/build/main.js exists exists`)
+    console.log(`found "${script}"`)
 }
 
-async function inlineDynamicImports() {
+async function buildSSRBundle() {
     const bundle = await rollup({
         input: script,
         inlineDynamicImports: true,

@@ -12,9 +12,9 @@ import postcssImport from 'postcss-import'
 import { injectManifest } from 'rollup-plugin-workbox'
 
 
-const { distDir } = getConfig()
+const { distDir } = getConfig() // use Routify's distDir for SSOT
 const assetsDir = 'assets'
-const buildDir = `assets/build`
+const buildDir = `dist/build`
 const isNollup = !!process.env.NOLLUP
 const production = !process.env.ROLLUP_WATCH;
 
@@ -26,7 +26,7 @@ removeSync(buildDir)
 const serve = () => ({
     writeBundle: async () => {
         const options = {
-            assetsDir,
+            assetsDir: [assetsDir, distDir],
             entrypoint: `${assetsDir}/__app.html`,
             script: `${buildDir}/main.js`
         }
@@ -51,11 +51,12 @@ export default {
             // Extract component CSS — better performance
             css: css => css.write(`${buildDir}/bundle.css`),
             hot: isNollup,
-            preprocess:
+            preprocess: [
                 autoPreprocess({
                     postcss: { plugins: [postcssImport()] },
                     defaults: { style: 'postcss' }
                 })
+            ]
         }),
 
         // resolve matching modules from current working directory
@@ -70,13 +71,17 @@ export default {
         !production && !isNollup && livereload(distDir), // refresh entire window when code is updated
         !production && isNollup && Hmr({ inMemory: true, public: assetsDir, }), // refresh only updated code
         {
-            transform: code => code.replace('process.env.NODE_ENV', `"${process.env.NODE_ENV}"`)
+            // provide node environment on the client
+            transform: code => ({
+                code: code.replace('process.env.NODE_ENV', `"${process.env.NODE_ENV}"`),
+                map: { mappings: '' }
+            })
         },
         injectManifest({
             globDirectory: assetsDir,
             globPatterns: ['**/*.{js,css,svg}', '__app.html'],
             swSrc: `src/sw.js`,
-            swDest: `assets/build/serviceworker.js`,
+            swDest: `dist/serviceworker.js`,
             maximumFileSizeToCacheInBytes: 10000000, // 10 MB,
             mode: 'production'
         }),
