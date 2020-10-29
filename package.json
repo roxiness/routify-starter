@@ -36,7 +36,7 @@
     "rollup-plugin-svelte-hot": "^0.10.0",
     "rollup-plugin-terser": "^6.1.0",
     "spassr": "^2.1.6",
-    "@roxi/routify": "^2.2.2-next-major",
+    "@roxi/routify": "workspace:^2.2.2-next-major",
     "fs-extra": "^9.0.1",
     "postcss-import": "^12.0.1",
     "rollup-plugin-workbox": "^5.2.1",

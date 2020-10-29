@@ -9,10 +9,14 @@ export default app;
 /** Service worker. Uncomment to use service worker */
 
 // if ('serviceWorker' in navigator) {
-//     import('workbox-window').then(async ({ Workbox }) => {
-//         const wb = new Workbox('/serviceworker.js')
-//         const registration = await wb.register()
-//         wb.addEventListener('installed', () => (console.log('installed service worker')))
-//         wb.addEventListener('externalinstalled', () => (console.log('installed service worker')))  
+//     addEventListener('app-loaded', () => {
+//         window.requestIdleCallback(() =>
+//             import('workbox-window').then(async ({ Workbox }) => {
+//                 const wb = new Workbox('/serviceworker.js')
+//                 const registration = await wb.register()
+//                 wb.addEventListener('installed', () => (console.log('installed service worker')))
+//                 wb.addEventListener('externalinstalled', () => (console.log('installed service worker')))
+//             })
+//         )
 //     })
 // }
