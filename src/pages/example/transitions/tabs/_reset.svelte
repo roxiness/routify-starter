@@ -1,25 +1,20 @@
 <script>
   import { TabsTransition } from "@roxi/routify/decorators";
-  import { writable } from "svelte/store";
   import BottomNav from "./_components/BottomNav.svelte";
   import { url, isActive } from "@roxi/routify";
 
-  const width = writable();
-  const color = writable();
   const _urls = [
     ["./home", "Home", "#7fc5bb"],
     ["./feed", "Feed", "#0bf5cc"],
     ["./updates", "Updates", "#88f0d0"],
-    ["./settings", "Settings", "#a1fac3"]
+    ["./settings", "Settings", "#a1fac3"],
   ];
   $: urls = _urls.map(([path, name, color]) => ({
     name,
     href: $url(path),
     color,
-    active: !!$isActive(path)
+    active: !!$isActive(path),
   }));
-  
-  $: urlOrder = urls.map(({href}) => href);
 </script>
 
 <style>
@@ -52,9 +47,8 @@
 </style>
 
 <div style="height: 100%">
-
-  <main class="inset" bind:offsetWidth={$width}>
-    <slot decorator={TabsTransition} scoped={{ width, urls: urlOrder }} />
+  <main class="inset">    
+      <slot decorator={TabsTransition} />    
   </main>
   <BottomNav {urls} height="64px" />
 </div>
