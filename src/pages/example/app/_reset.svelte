@@ -1,5 +1,5 @@
 <script>
-  import { goto, url } from "@sveltech/routify";
+  import { goto, url } from "@roxi/routify";
   import { user } from "./_store";
 
   /** We set the static parameter to true since we don't want to change the browser's URL
@@ -14,7 +14,7 @@
 </script>
 
 {#if $user}
-  <a href={$url('example-app')}>Back to examples</a>
+  <a href={$url('/example')}>Back to examples</a>
   <a href={$url('./')}>Home</a>
   <a href={$url('./about')}>About</a>
   <button on:click={logout} style="position: absolute; right: 24px">

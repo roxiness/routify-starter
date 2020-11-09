@@ -1,5 +1,5 @@
 <script>
-  import { ready, url, params } from "@sveltech/routify";
+  import { ready, url, params } from "@roxi/routify";
   let series = {};
 
   $: updateShow($params.showId);
@@ -16,7 +16,7 @@
 
 <div style="text-align: center; max-width: 540px; margin: auto">
   <h4>
-    <a href={$url('../..')}>Go back</a>
+    <a href={$url('./')}>Go back</a>
   </h4>
 
   {#if series.id}

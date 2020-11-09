@@ -1,7 +1,6 @@
 <script>
-  import { url } from "@sveltech/routify";
+  import { url } from "@roxi/routify";
   import NavLinks from "./_components/NavLinks.svelte";
-  import RenderStatus from "./_components/RenderStatus.svelte";
 </script>
 
 <style>
@@ -28,16 +27,24 @@
     box-shadow: 0px 5px 20px 5px rgba(0, 0, 0, 0.075);
   }
 
-  .main {overflow: auto; height: calc(100%); padding: 8px}
+  .main {
+    overflow: auto;
+    height: calc(100%);
+    padding: 8px;
+  }
 </style>
 
 <!-- Reset files doesn't inherit the parent scope.
-This ensures that the example app doesn't inherit
- layouts from the main app. -->
+  This ensures that the example app doesn't inherit
+  layouts from the main app. -->
 <div class="example">
   <div class="nav">
     <NavLinks />
-    <RenderStatus />
+    <!-- we load RenderStatus popup dynamically as it's not
+      important and we don't want to slow down the initial load -->
+    {#await import('./_components/RenderStatus.svelte') then Module}
+      <svelte:component this={Module.default} />
+    {/await}
   </div>
   <div class="main">
     <slot>

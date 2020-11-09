@@ -1,6 +1,6 @@
 <script>
   export let id;
-  import { url } from "@sveltech/routify";
+  import { url } from "@roxi/routify";
 </script>
 
 <style>
@@ -16,5 +16,5 @@
 
 <br />
 
-<a href={$url('../../../home')}>Go home</a>
-<a href={$url('../../')}>Go back</a>
+<a href={$url('../../home')}>Go home</a>
+<a href={$url('../')}>Go back</a>

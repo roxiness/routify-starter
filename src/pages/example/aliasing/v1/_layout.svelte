@@ -1,5 +1,5 @@
 <script>
-    import { url } from '@sveltech/routify'
+    import { url } from '@roxi/routify'
 </script>
 
 <p>V1 has three files, which can be seen in the links below </p>
