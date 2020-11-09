@@ -50,6 +50,7 @@
     "extensions": "svelte,html,svx,md"
   },
   "spassr": {
+    "assetsDir": ["dist", "assets"],
     "script": "dist/build/main.js",
     "ssrOptions": {
       "inlineDynamicImports": true
