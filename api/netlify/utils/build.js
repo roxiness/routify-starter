@@ -1,3 +1,7 @@
+/**
+ * writes a bundle.json for our ssr.js function to consume
+ */
+
 const { resolve } = require('path')
 const { readFileSync, writeFileSync } = require('fs')
 const { build } = require('esbuild')
