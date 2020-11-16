@@ -1,8 +1,6 @@
 const fs = require('fs')
 const { tossr } = require('tossr')
-
-const script = 'dist/build/main.js'
-const template = 'dist/__app.html'
+const { script, template } = require('./bundle.json')
 
 console.log('dir')
 console.log(fs.readdirSync(__dirname))

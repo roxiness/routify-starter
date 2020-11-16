@@ -4,11 +4,13 @@
   "description": "",
   "main": "ssr.js",
   "scripts": {
+    "build": "build.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "esbuild": "^0.8.8",
     "tossr": "^1.3.1"
   }
 }
