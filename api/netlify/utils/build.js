@@ -2,9 +2,9 @@ const { resolve } = require('path')
 const { readFileSync, writeFileSync } = require('fs')
 const { build } = require('esbuild')
 
-const scriptPath = resolve(__dirname, '../../dist/build/main.js')
-const templatePath = resolve(__dirname, '../../dist/__app.html')
-const bundlePath = resolve(__dirname, 'build/bundle.js')
+const scriptPath = resolve(__dirname, '../../../dist/build/main.js')
+const templatePath = resolve(__dirname, '../../../dist/__app.html')
+const bundlePath = resolve(__dirname, '../build/bundle.js')
 
 build({ entryPoints: [scriptPath], outfile: bundlePath, bundle: true }).then(() => {
     const bundle = {
@@ -13,5 +13,5 @@ build({ entryPoints: [scriptPath], outfile: bundlePath, bundle: true }).then(() 
         template: readFileSync(templatePath, 'utf8')
     }
 
-    writeFileSync(resolve(__dirname, 'bundle.json'), JSON.stringify(bundle, null, 2))
+    writeFileSync(resolve(__dirname, '../bundle.json'), JSON.stringify(bundle, null, 2))
 })

@@ -4,7 +4,7 @@
   "description": "",
   "main": "ssr.js",
   "scripts": {
-    "build": "build.js",
+    "build": "node utils/build.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
