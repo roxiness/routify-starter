@@ -1,8 +1,14 @@
 
 [build]
-  publish = "public/"
-  functions = "api/"
-  ignore = "git diff --quiet HEAD^ HEAD ../../"
+  publish = "dist"
+  functions = "api/netlify"
+
+# dev doesn't work yet. Any takers?
+# [dev]  
+  # command = "npm run dev:ssr"
+  # targetPort = 5000
+  # publish = "assets"
+  # autoLaunch = true
 
 [[redirects]]
   # SSR and SPA
