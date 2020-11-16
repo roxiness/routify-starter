@@ -3,7 +3,7 @@
   publish = "dist"
   functions = "api/netlify"
 
-# dev doesn't work yet. Any takers?
+# Dev doesn't work yet. Any takers?
 # [dev]  
   # command = "npm run dev:ssr"
   # targetPort = 5000
