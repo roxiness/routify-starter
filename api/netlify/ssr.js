@@ -1,8 +1,8 @@
 const fs = require('fs')
 const { tossr } = require('tossr')
 
-const script = 'main.js'
-const template = '__app.html'
+const script = 'dist/build/main.js'
+const template = 'dist/__app.html'
 
 exports.handler = async (event, context) => {
     const body = await tossr(template, script, event.path, { inlineDynamicImports: true })
