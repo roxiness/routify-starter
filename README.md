@@ -53,11 +53,11 @@ See [src/pages/example/api/[showId].svelte](https://github.com/sveltech/routify-
 
 ### Typescript
 
-For Typescript, we recommend @lamualfa's excellent [setup-routify-ts](https://github.com/lamualfa/setup-routify-ts/)
+For Typescript, we recommend [@lamualfa](https://github.com/lamualfa) excellent [routify-ts](https://github.com/lamualfa/routify-ts/)
 
-New project: `npx setup-routify-ts init <project-name> [routify-init-args]`
+New project: `npx routify-ts init <project-name> [routify-init-args]`
 
-Existing project: `npx setup-routify-ts convert [project-directory]`
+Existing project: `npx routify-ts convert [project-directory]`
 
 
 ### Issues?
