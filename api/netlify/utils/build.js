@@ -1,5 +1,10 @@
 /**
- * writes a bundle.json for our ssr.js function to consume
+ * Creates a JSON and inlines it with esbuild for ssr.js to consume
+ * {
+ *   data: duh,
+ *   script: inlined main.js
+ *   template: __app.html
+ * }
  */
 
 const { resolve } = require('path')
