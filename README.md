@@ -1,6 +1,6 @@
 # routify-starter
 
-Starter template for [Routify](https://github.com/sveltech/routify)
+Starter template for [Routify](https://github.com/sveltech/routify).
 
 ### Get started
 
@@ -11,13 +11,15 @@ Starter template for [Routify](https://github.com/sveltech/routify)
 | [blog](https://blog-example.routify.dev/) | Generates a blog from local markdown posts. Includes mdsvex |
 | [auth](https://auth-example.routify.dev/) | Embedded login on protected pages. Includes Auth0           |
 
-To use a template, run
+To use a template, run:
 
 `npx @sveltech/routify init`
 
 or
 
-`npx @sveltech/routify init --branch <branch-name>`.
+`npx @sveltech/routify init --branch <branch-name>`
+
+The above commands will populate the current directory, they don't create a new one.
 
 ### npm scripts
 
