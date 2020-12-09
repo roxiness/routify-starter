@@ -1,5 +1,5 @@
 <script>
-	import { ready } from '@sveltech/routify'
+	import { ready } from '@roxi/routify'
 	import { authStore } from '../../auth.js'
 	import Login from '../login/index.svelte'
 	const { user, authenticated, loading } = authStore
