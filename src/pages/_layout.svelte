@@ -1,5 +1,5 @@
 <script>
-  import { metatags, page } from "@sveltech/routify";
+  import { metatags, page } from "@roxi/routify";
   import Navigation from "./_navigation.svelte";
   import SrcOnGithub from "../components/SrcOnGithub.svelte";
 
