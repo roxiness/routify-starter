@@ -1,5 +1,5 @@
 <script>
-  import { url, layout } from "@sveltech/routify";
+  import { url, layout } from "@roxi/routify";
   import marked from "marked";
 
   const posts = $layout.children

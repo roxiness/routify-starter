@@ -4,7 +4,7 @@ Starter template for [Routify](https://github.com/sveltech/routify)
 
 ### Get started
 
-To use this starter run `npx @sveltech/routify init` in an empty folder.
+To use this starter run `npx @roxi/routify init` in an empty folder.
 
 Alternatively, you can clone this repo.
 

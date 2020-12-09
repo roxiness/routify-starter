@@ -1,6 +1,6 @@
 <div class="hero">
   <h1>Routify blog example</h1>
-  <code>npx @sveltech/routify init --branch blog</code>
+  <code>npx @roxi/routify init --branch blog</code>
   
   <ul class="checks">
     <li>☑ Markdown with mdsvex</li>
