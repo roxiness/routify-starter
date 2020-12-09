@@ -1,5 +1,5 @@
 <script>
-	import { metatags } from '@sveltech/routify'
+	import { metatags } from '@roxi/routify'
 	metatags.title = 'My Routify app'
 	metatags.description = 'Description coming soon...'
 </script>
@@ -16,6 +16,6 @@
 			<li>No need to proxy authentication through a server</li>
 		</ul>
 				
-		<code>npx @sveltech/routify init --branch auth</code>
+		<code>npx @roxi/routify init --branch auth</code>
 	</div>
 </div>

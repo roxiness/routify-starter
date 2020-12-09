@@ -1,10 +1,9 @@
-import HMR from '@sveltech/routify/hmr'
+import HMR from '@roxi/routify/hmr'
 import App from './App.svelte'
 
 const app = HMR(App, { target: document.body }, 'routify-app')
 
-export default app;
-
+export default app
 
 /** Service worker. Uncomment to use service worker */
 
@@ -13,6 +12,6 @@ export default app;
 //         const wb = new Workbox('/sw.js')
 //         const registration = await wb.register()
 //         wb.addEventListener('installed', () => (console.log('installed service worker')))
-//         wb.addEventListener('externalinstalled', () => (console.log('installed service worker')))  
+//         wb.addEventListener('externalinstalled', () => (console.log('installed service worker')))
 //     })
 // }
