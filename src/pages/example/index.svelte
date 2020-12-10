@@ -1,5 +1,5 @@
 <script>
-  import base64Logo from "./_components/assets/logo.js";
+  import base64Logo from './_components/assets/logo.js';
 </script>
 
 <!-- routify:option name="example-app" -->

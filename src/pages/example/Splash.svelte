@@ -1,5 +1,5 @@
 <script>
-  import { draw } from "svelte/transition";
+  import { draw } from 'svelte/transition';
   let duration = 2000;
   let drawing = true;
   let show = false;

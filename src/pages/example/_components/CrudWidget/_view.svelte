@@ -1,5 +1,5 @@
 <script>
-  import { url } from "@roxi/routify";
+  import { url } from '@roxi/routify';
   export let data = [],
     id;
   $: item = data.filter((item) => item.id == id)[0];

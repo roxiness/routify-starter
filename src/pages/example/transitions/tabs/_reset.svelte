@@ -1,13 +1,13 @@
 <script>
-  import { TabsTransition } from "@roxi/routify/decorators";
-  import BottomNav from "./_components/BottomNav.svelte";
-  import { url, isActive } from "@roxi/routify";
+  import { TabsTransition } from '@roxi/routify/decorators';
+  import BottomNav from './_components/BottomNav.svelte';
+  import { url, isActive } from '@roxi/routify';
 
   const _urls = [
-    ["./home", "Home", "#7fc5bb"],
-    ["./feed", "Feed", "#0bf5cc"],
-    ["./updates", "Updates", "#88f0d0"],
-    ["./settings", "Settings", "#a1fac3"],
+    ['./home', 'Home', '#7fc5bb'],
+    ['./feed', 'Feed', '#0bf5cc'],
+    ['./updates', 'Updates', '#88f0d0'],
+    ['./settings', 'Settings', '#a1fac3'],
   ];
   $: urls = _urls.map(([path, name, color]) => ({
     name,

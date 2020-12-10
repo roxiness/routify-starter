@@ -1,12 +1,12 @@
 <script>
-  import { goto, url } from "@roxi/routify";
-  import { user } from "./_store";
+  import { goto, url } from '@roxi/routify';
+  import { user } from './_store';
 
   /** We set the static parameter to true since we don't want to change the browser's URL
    *  Notice the $: prefix which makes the statement reactive. This way if the user logs
    *  out the $goto is called again.
    * **/
-  $: if (!$user) $goto("./login", {}, true);
+  $: if (!$user) $goto('./login', {}, true);
 
   function logout() {
     $user = false;

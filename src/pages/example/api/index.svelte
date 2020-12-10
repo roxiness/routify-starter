@@ -1,5 +1,5 @@
 <script>
-  import { url, prefetch } from "@roxi/routify";
+  import { url, prefetch } from '@roxi/routify';
   export let scoped;
   const options = {
     validFor: 3600 * 24 * 31, // don't refresh assets on the page for a month

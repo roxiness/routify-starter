@@ -1,7 +1,6 @@
 <script>
-  import { scale, fly } from "svelte/transition";
-  import { route } from "@roxi/routify";
-  import { Transition } from "@roxi/routify/decorators";
+  import { scale, fly } from 'svelte/transition';
+  import { Transition } from '@roxi/routify/decorators';
 
   export let scoped;
   const { width } = scoped;

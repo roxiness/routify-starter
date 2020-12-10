@@ -1,5 +1,5 @@
 <script>
-  import { url } from "@roxi/routify";
+  import { url } from '@roxi/routify';
 </script>
 
 <div class="layout-container">

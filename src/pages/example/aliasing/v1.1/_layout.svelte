@@ -1,5 +1,5 @@
 <script>
-  import { url } from "@roxi/routify";
+  import { url } from '@roxi/routify';
 </script>
 
 <p>V1.1 has only one file: feature2.svelte</p>

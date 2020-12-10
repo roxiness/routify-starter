@@ -1,5 +1,4 @@
 <script>
-  import { url, isActive } from "@roxi/routify";
   export let urls, height;
   let linkElems = [];
   let overlay;
@@ -11,10 +10,10 @@
   $: color = activeUrl && activeUrl.color;
 
   function copyDimensions(source, target) {
-    target.style.left = source.offsetLeft + "px";
-    target.style.top = source.offsetTop + "px";
-    target.style.width = source.clientWidth + "px";
-    target.style.height = source.clientHeight + "px";
+    target.style.left = source.offsetLeft + 'px';
+    target.style.top = source.offsetTop + 'px';
+    target.style.width = source.clientWidth + 'px';
+    target.style.height = source.clientHeight + 'px';
   }
 
   const saveElement = (el) => (linkElems = [...linkElems, el]);

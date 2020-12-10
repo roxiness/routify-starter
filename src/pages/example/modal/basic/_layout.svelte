@@ -1,6 +1,5 @@
 <script>
-  import { url, params } from "@roxi/routify";
-  import { getContext } from "svelte";
+  import { url, params } from '@roxi/routify';
 </script>
 
 <div class="cards">

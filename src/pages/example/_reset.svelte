@@ -1,6 +1,6 @@
 <script>
-  import { url } from "@roxi/routify";
-  import NavLinks from "./_components/NavLinks.svelte";
+  import { url } from '@roxi/routify';
+  import NavLinks from './_components/NavLinks.svelte';
 </script>
 
 <style>

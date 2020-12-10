@@ -1,18 +1,18 @@
 <script>
-  import { url, isActive } from "@roxi/routify";
+  import { url, isActive } from '@roxi/routify';
   let show = false;
   const _links = [
-    ["/", "⯇ BACK TO APP"],
-    ["./index", "Home"],
-    ["./modal", "Modal"],
-    ["./reset", "Reset"],
-    ["./layouts", "Layouts"],
-    ["./widget", "Widget"],
-    ["./aliasing", "Aliasing"],
-    ["./404", "404"],
-    ["./api", "Api"],
-    ["./app", "App"],
-    ["./transitions/tabs", "Transitions"],
+    ['/', '⯇ BACK TO APP'],
+    ['./index', 'Home'],
+    ['./modal', 'Modal'],
+    ['./reset', 'Reset'],
+    ['./layouts', 'Layouts'],
+    ['./widget', 'Widget'],
+    ['./aliasing', 'Aliasing'],
+    ['./404', '404'],
+    ['./api', 'Api'],
+    ['./app', 'App'],
+    ['./transitions/tabs', 'Transitions'],
   ];
 
   function handleBurger() {

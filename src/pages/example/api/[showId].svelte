@@ -1,5 +1,5 @@
 <script>
-  import { ready, url, params } from "@roxi/routify";
+  import { ready, url, params } from '@roxi/routify';
   let series = {};
 
   $: updateShow($params.showId);

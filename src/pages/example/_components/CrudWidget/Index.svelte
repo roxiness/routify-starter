@@ -1,12 +1,12 @@
 <script>
-  import { leftover } from "@roxi/routify";
-  import list from "./_list.svelte";
-  import update from "./_update.svelte";
-  import view from "./_view.svelte";
+  import { leftover } from '@roxi/routify';
+  import list from './_list.svelte';
+  import update from './_update.svelte';
+  import view from './_view.svelte';
   export let data;
   const components = { list, update, view };
 
-  $: [id, action = "view"] = $leftover.split("/");
+  $: [id, action = 'view'] = $leftover.split('/');
   $: component = (id && components[action]) || list;
 </script>
 

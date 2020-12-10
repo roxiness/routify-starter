@@ -1,7 +1,7 @@
 <script>
-  import { url, context, afterPageLoad } from "@roxi/routify";
-  import { crossfade, fade } from "svelte/transition";
-  import Target from "./_target.svelte";
+  import { url, context, afterPageLoad } from '@roxi/routify';
+  import { crossfade, fade } from 'svelte/transition';
+  import Target from './_target.svelte';
 
   const [send, receive] = crossfade({});
   $: _key = $context.child && $context.child.params.key;

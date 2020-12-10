@@ -1,5 +1,5 @@
 <script>
-  import { goto, params, context } from "@roxi/routify";
+  import { goto, params, context } from '@roxi/routify';
   export let scoped;
   const { send, receive, activeKey, key } = scoped;
 </script>

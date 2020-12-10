@@ -1,6 +1,6 @@
 <script>
-  import CrudWidget from "../_components/CrudWidget/Index.svelte";
-  import { users } from "../_data";
+  import CrudWidget from '../_components/CrudWidget/Index.svelte';
+  import { users } from '../_data';
 </script>
 
 <div style="text-align: center">

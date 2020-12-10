@@ -1,5 +1,5 @@
 <script>
-  import { goto, url } from "@roxi/routify";
+  import { goto, url } from '@roxi/routify';
   export let key;
 </script>
 
