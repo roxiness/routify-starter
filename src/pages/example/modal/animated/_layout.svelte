@@ -4,7 +4,7 @@
   import Target from "./_target.svelte";
 
   const [send, receive] = crossfade({});
-  $: _key = $context.child && $context.child.params.key
+  $: _key = $context.child && $context.child.params.key;
 </script>
 
 <div class="cards">

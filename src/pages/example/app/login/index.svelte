@@ -25,16 +25,11 @@
   <br />
   <br />
   <br />
-  <p>
-    This login page is actually located at
-    <a href={$url()}>{$url()}</a>
-  </p>
+  <p>This login page is actually located at <a href={$url()}>{$url()}</a></p>
   <p>
     You are seeing it here, because we're using $goto with the static option
     enabled. This renders the login page, without changing the URL in the
     browser.
   </p>
-  <p>
-  On submit, we're "redirected" to the current URL in your browser.
-  </p>
+  <p>On submit, we're "redirected" to the current URL in your browser.</p>
 </div>

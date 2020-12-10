@@ -15,10 +15,7 @@
   {#each data as item}
     <a href={$url('../:id', { id: item.id })} class="item">
       {#each Object.entries(item).slice(0, 3) as [name, value]}
-        <div>
-          <b>{name}:</b>
-          {value}
-        </div>
+        <div><b>{name}:</b> {value}</div>
       {/each}
     </a>
   {/each}

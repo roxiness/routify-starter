@@ -3,11 +3,12 @@
   export let urls, height;
   let linkElems = [];
   let overlay;
-  let clientWidth
+  let clientWidth;
   $: urlsWithElem = linkElems.map((elem, i) => ({ ...urls[i], elem }));
-  $: activeUrl = urlsWithElem.find(({active}) => active)
-  $: if (overlay && clientWidth && activeUrl) copyDimensions(activeUrl.elem, overlay);
-  $: color = activeUrl && activeUrl.color
+  $: activeUrl = urlsWithElem.find(({ active }) => active);
+  $: if (overlay && clientWidth && activeUrl)
+    copyDimensions(activeUrl.elem, overlay);
+  $: color = activeUrl && activeUrl.color;
 
   function copyDimensions(source, target) {
     target.style.left = source.offsetLeft + "px";
@@ -16,7 +17,7 @@
     target.style.height = source.clientHeight + "px";
   }
 
-  const saveElement = el => (linkElems = [...linkElems, el]);
+  const saveElement = (el) => (linkElems = [...linkElems, el]);
 </script>
 
 <style>
@@ -51,20 +52,13 @@
     position: absolute;
     /* background: #555; */
     transition: 0.3s all;
-    background: linear-gradient(
-          rgba(0, 0, 0, 0.15), 
-          rgba(0, 0, 0, 0.15)
-        )
+    background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15));
   }
 </style>
 
 <nav bind:clientWidth>
   {#each urls as { name, path, active, href }, i}
-    <a
-      style="line-height: {height}"
-      {href}
-      class:active
-      use:saveElement>
+    <a style="line-height: {height}" {href} class:active use:saveElement>
       {name}
     </a>
   {/each}

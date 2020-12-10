@@ -7,10 +7,10 @@
     [532, "Scrubs"],
     [30960, "Cobra Kai"],
     [530, "Seinfeld"],
-    [347, "It's Always Sunny in Philadelphia"]
+    [347, "It's Always Sunny in Philadelphia"],
   ];
 </script>
 
-<slot scoped={{movies}}>
+<slot scoped={{ movies }}>
   <!-- optional fallback -->
 </slot>

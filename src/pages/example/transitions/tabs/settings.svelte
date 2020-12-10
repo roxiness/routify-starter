@@ -7,6 +7,6 @@
 
 <!-- routify:options index=3 -->
 <main>
-<br>
+  <br />
   <h1>Settings</h1>
 </main>

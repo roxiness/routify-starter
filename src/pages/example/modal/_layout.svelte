@@ -56,7 +56,6 @@
 </style>
 
 <div data-routify="scroll-lock">
-
   <div class="center">
     <a href={$url('./basic')} class={active === 'basic' ? 'active' : ''}>
       Basic

@@ -17,7 +17,7 @@
   }
 </style>
 
-<div >
+<div>
   <div class="layout-container">
     <div class="card">
       <a href={$url('./child')}>Child</a>

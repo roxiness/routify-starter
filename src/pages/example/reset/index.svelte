@@ -1,9 +1,7 @@
 <script>
-    import { url } from '@roxi/routify'
+  import { url } from "@roxi/routify";
   import base64Kevin from "../_components/assets/kevin.js";
 </script>
-
-
 
 <style>
   .center {

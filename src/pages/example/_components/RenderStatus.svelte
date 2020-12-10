@@ -2,7 +2,11 @@
   import { fade } from "svelte/transition";
 
   let show = true;
-  let render = window.__preRendered ? "prerender" : window.__ssrRendered ? "ssr" : "spa";
+  let render = window.__preRendered
+    ? "prerender"
+    : window.__ssrRendered
+    ? "ssr"
+    : "spa";
   setTimeout(() => {
     show = false;
   }, 3000);

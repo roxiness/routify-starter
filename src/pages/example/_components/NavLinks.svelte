@@ -46,7 +46,6 @@
     vertical-align: middle;
   }
   .title {
-    
     top: 6px;
     left: 0;
     right: 0;
@@ -59,7 +58,7 @@
     left: 8px;
     top: 4px;
   }
-  nav {    
+  nav {
     display: none;
     width: 100%;
     padding: 16px;

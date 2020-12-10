@@ -1,15 +1,14 @@
 <script>
   import { url, params } from "@roxi/routify";
   import { getContext } from "svelte";
-
 </script>
 
 <div class="cards">
-  {#each Array(12) as item, key}    
-      <a class="card" href={$url('./:key', { key })}>
-        <div class="content">{key}</div>
-      </a>    
+  {#each Array(12) as item, key}
+    <a class="card" href={$url('./:key', { key })}>
+      <div class="content">{key}</div>
+    </a>
   {/each}
 </div>
 
-<slot  />
+<slot />

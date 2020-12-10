@@ -47,8 +47,8 @@
 </style>
 
 <div style="height: 100%">
-  <main class="inset">    
-      <slot decorator={TabsTransition} />    
+  <main class="inset">
+    <slot decorator={TabsTransition} />
   </main>
   <BottomNav {urls} height="64px" />
 </div>

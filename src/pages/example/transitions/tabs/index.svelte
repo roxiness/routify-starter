@@ -1,4 +1,4 @@
 <script>
-  import { redirect } from '@roxi/routify'
-  $redirect('./home')
+  import { redirect } from "@roxi/routify";
+  $redirect("./home");
 </script>

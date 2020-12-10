@@ -1,12 +1,12 @@
 <script>
-  import { draw } from 'svelte/transition'
-  let duration = 2000
-  let drawing = true
-  let show = false
-  let error = false
-  setTimeout(() => (show = true))
-  setTimeout(() => (drawing = false), 1800)
-  setTimeout(() => (error = true), 5000)
+  import { draw } from "svelte/transition";
+  let duration = 2000;
+  let drawing = true;
+  let show = false;
+  let error = false;
+  setTimeout(() => (show = true));
+  setTimeout(() => (drawing = false), 1800);
+  setTimeout(() => (error = true), 5000);
 </script>
 
 <style>
@@ -18,7 +18,9 @@
     transform: translate(-50%, -50%);
     margin: 0;
   }
-  .error {min-height: 100px}
+  .error {
+    min-height: 100px;
+  }
   .svg {
     width: 200px;
     margin: auto;

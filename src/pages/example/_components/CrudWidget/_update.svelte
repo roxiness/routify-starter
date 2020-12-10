@@ -1,18 +1,15 @@
 <script>
   import { url } from "@roxi/routify";
   export let data, id;
-  $: item = data.filter(item => item.id == id)[0];
+  $: item = data.filter((item) => item.id == id)[0];
 </script>
 
-<div >
-  <div >
+<div>
+  <div>
     {#each Object.entries(item) as [name, value]}
-      <div>
-        <b>{name}:</b>
-        <input type="text" {value}>
-      </div>
+      <div><b>{name}:</b> <input type="text" {value} /></div>
     {/each}
   </div>
-  <br>
-  <a href="{$url('../:id', {id})}">Back</a>
+  <br />
+  <a href={$url('../:id', { id })}>Back</a>
 </div>
