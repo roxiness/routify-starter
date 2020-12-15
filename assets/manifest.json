@@ -14,7 +14,8 @@
     {
       "src": "/images/touch-icons/logo-800.png",
       "sizes": "800x800",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "maskable any"
     }
   ]
 }
