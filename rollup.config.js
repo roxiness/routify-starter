@@ -74,7 +74,7 @@ export default {
         !production && !isNollup && livereload(distDir), // refresh entire window when code is updated
         !production && isNollup && Hmr({ inMemory: true, public: assetsDir, }), // refresh only updated code
         injectProcessEnv({
-            NODE_ENV: process.env.NODE_ENV
+            NODE_ENV: production ? 'production': 'development'
         }),
         injectManifest({
             globDirectory: assetsDir,
