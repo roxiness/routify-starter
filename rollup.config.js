@@ -43,7 +43,9 @@ export default {
     output: {
         sourcemap: true,
         format: 'esm',
-        dir: buildDir
+        dir: buildDir,
+        // for performance, disabling filename hashing in development
+        chunkFileNames:`[name]${production && '-[hash]' || ''}.js`
     },
     plugins: [
         svelte({
