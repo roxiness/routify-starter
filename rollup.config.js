@@ -10,6 +10,7 @@ import getConfig from '@roxi/routify/lib/utils/config'
 import autoPreprocess from 'svelte-preprocess'
 import postcssImport from 'postcss-import'
 import { injectManifest } from 'rollup-plugin-workbox'
+import injectProcessEnv from 'rollup-plugin-inject-process-env'
 
 
 const { distDir } = getConfig() // use Routify's distDir for SSOT
@@ -72,13 +73,9 @@ export default {
         !production && !isNollup && serve(),
         !production && !isNollup && livereload(distDir), // refresh entire window when code is updated
         !production && isNollup && Hmr({ inMemory: true, public: assetsDir, }), // refresh only updated code
-        {
-            // provide node environment on the client
-            transform: code => ({
-                code: code.replace('process.env.NODE_ENV', `"${process.env.NODE_ENV}"`),
-                map: { mappings: '' }
-            })
-        },
+        injectProcessEnv({
+            NODE_ENV: process.env.NODE_ENV
+        }),
         injectManifest({
             globDirectory: assetsDir,
             globPatterns: ['**/*.{js,css,svg}', '__app.html'],
