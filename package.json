@@ -50,13 +50,19 @@
     "extensions": "svelte,html,svx,md"
   },
   "spassr": {
-    "assetsDir": ["dist", "assets"],
+    "assetsDir": [
+      "dist",
+      "assets"
+    ],
     "script": "dist/build/main.js",
     "ssrOptions": {
       "inlineDynamicImports": true
     }
   },
   "spank": {
+    "ssrOptions": {
+      "inlineDynamicImports": true
+    },
     "blacklist": [
       "/example/modal/basic/4"
     ]
