@@ -80,7 +80,7 @@ export default {
             globDirectory: assetsDir,
             globPatterns: ['**/*.{js,css,svg}', '__app.html'],
             swSrc: `src/sw.js`,
-            swDest: `dist/serviceworker.js`,
+            swDest: `${distDir}/serviceworker.js`,
             maximumFileSizeToCacheInBytes: 10000000, // 10 MB,
             mode: 'production'
         }),
