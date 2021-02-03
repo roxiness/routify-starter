@@ -50,7 +50,7 @@ See [src/pages/example/api/[showId].svelte](https://github.com/sveltech/routify-
 ### Production
 
 * For SPA or SSR apps please make sure that url rewrite is enabled on the server.
-* For SPA redirect to `__dynamic.html`.
+* For SPA redirect to `__app.html`.
 * For SSR redirect to the lambda function or express server.
 
 ### Typescript
