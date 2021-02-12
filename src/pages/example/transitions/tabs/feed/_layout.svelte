@@ -2,7 +2,6 @@
   main {
     background: #0bf5cc;
     height: 100%;
-    overflow-y: auto;
   }
   * :global(.card) {
     background: white;
