@@ -26,7 +26,7 @@
   "devDependencies": {
     "@rollup/plugin-commonjs": "^15.0.0",
     "@rollup/plugin-node-resolve": "^10.0.0",
-    "@roxi/routify": "^2.8.5",
+    "@roxi/routify": "^2.12.4",
     "cross-env": "^7.0.2",
     "fs-extra": "^9.0.1",
     "nollup": "^0.13.13",
