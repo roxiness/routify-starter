@@ -14,7 +14,7 @@ import { injectManifest } from 'rollup-plugin-workbox'
 
 const { distDir } = getConfig() // use Routify's distDir for SSOT
 const assetsDir = 'assets'
-const buildDir = `dist/build`
+const buildDir = `${distDir}/build`
 const isNollup = !!process.env.NOLLUP
 const production = !process.env.ROLLUP_WATCH;
 
