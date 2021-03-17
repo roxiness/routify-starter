@@ -75,7 +75,7 @@ export default {
         {
             // provide node environment on the client
             transform: code => ({
-                code: code.replace('process.env.NODE_ENV', `"${process.env.NODE_ENV}"`),
+                code: code.replace(/process\.env\.NODE_ENV/g, `"${process.env.NODE_ENV}"`),
                 map: { mappings: '' }
             })
         },
