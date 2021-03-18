@@ -20,7 +20,7 @@
   </h4>
 
   {#if series.id}
-    <img src={series.image.medium.replace('http', 'https')} alt="cover" style="height: 295px" />
+    <img src={series.image.medium.replace('http:', 'https:')} alt="cover" style="height: 295px" />
     <h1>{series.name} ({series.premiered.split('-')[0]})</h1>
     <p>
       {@html series.summary}
