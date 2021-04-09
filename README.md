@@ -13,11 +13,11 @@ Starter template for [Routify](https://github.com/sveltech/routify).
 
 To use a template, run:
 
-`npx @sveltech/routify init`
+`npx @roxi/routify init`
 
 or
 
-`npx @sveltech/routify init --branch <branch-name>`
+`npx @roxi/routify init --branch <branch-name>`
 
 The above commands will populate the current directory, they don't create a new one.
 
