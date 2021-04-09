@@ -16,8 +16,8 @@
   <div>
     <b>This template:</b>
     <br />
-    <a href="https://github.com/sveltech/routify-starter">
-      https://github.com/sveltech/routify-starter
+    <a href="https://github.com/roxiness/routify-starter">
+      https://github.com/roxiness/routify-starter
     </a>
   </div>
 
