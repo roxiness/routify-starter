@@ -1,6 +1,6 @@
 # routify-starter
 
-Starter template for [Routify](https://github.com/sveltech/routify).
+Starter template for [Routify](https://github.com/roxiness/routify).
 
 ### Get started
 
@@ -45,7 +45,7 @@ If $ready() is present, rendering will be delayed till the function has been cal
 
 Otherwise it will be rendered instantly.
 
-See [src/pages/example/api/[showId].svelte](https://github.com/sveltech/routify-starter/blob/master/src/pages/example/api/%5BshowId%5D.svelte) for an example.
+See [src/pages/example/api/[showId].svelte](https://github.com/roxiness/routify-starter/blob/master/src/pages/example/api/%5BshowId%5D.svelte) for an example.
 
 ### Production
 
