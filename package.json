@@ -5,7 +5,7 @@
     "dev": "run-p routify rollup",
     "dev:nollup": "run-p routify nollup",
     "dev-dynamic": "cross-env BUNDLING=dynamic npm run dev",
-    "build": "routify -b && rollup -c && routify export && workbox injectManifest",
+    "build": "routify -b && rollup -c && spank && workbox injectManifest",
     "serve": "spassr --serve-spa --serve-ssr",
     "export": "routify export",
     "build:docker": "npm run build && ./scripts/docker/docker-build.sh",
@@ -41,6 +41,7 @@
     "postcss-preset-env": "^6.7.0",
     "remark-slug": "^6.0.0",
     "routify-plugin-frontmatter": "^1.0.1",
+    "spank": "^1.7.0",
     "svelte": "^3.23.2",
     "svelte-preprocess": "^4.0.8",
     "workbox-cli": "^5.1.3"
