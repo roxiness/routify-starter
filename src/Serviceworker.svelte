@@ -2,6 +2,7 @@
   /**
    * This file handles serviceworker registration
    * To enable it, import it from another file, ie. src/pages/_layout.svelte
+   * ⚠ The imported component could get treeshaken if not used, eg. <SW />
    * For configuring the serviceworker, refer to sw.js
    */
   if ("serviceWorker" in navigator) {
