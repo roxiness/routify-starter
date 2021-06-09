@@ -1,3 +1,9 @@
+### Oh hai! ❤
+We've created a new project called [**stackmix**](https://github.com/roxiness/stackmix). It's an experimental CLI that let's you customize new Routify templates. Go check it out!
+
+---
+
+
 # routify-starter
 
 Starter template for [Routify](https://github.com/roxiness/routify).
