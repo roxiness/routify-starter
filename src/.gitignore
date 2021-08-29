@@ -1,5 +1,6 @@
 node_modules
 .routify
 dist
+package-lock.json
 public/build
 src/tmp
