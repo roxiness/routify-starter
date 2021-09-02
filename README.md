@@ -26,6 +26,9 @@ Run with `npm run <command>`, for example `npm run dev`
 | `build`   | Build your app for production!                |
 | `preview` | Preview the built version of your app locally |
 
+# Want a service worker?
+Checkout [vite-plugin-pwa](http://npmjs.org/vite-plugin-pwa)
+
 # Extra Configs
 We include a few extra configs to help make it easy to ship a Routify project:
 
