@@ -1,58 +1,24 @@
 {
-  "name": "svelte-app",
-  "version": "1.0.0",
-  "@comments scripts": {
-    "dev": "develop with blazing fast rebuilds",
-    "dev:features": "develop with features like SSR and serviceworker enabled",
-    "build": "run build scripts below",
-    "build:app": "build single page application (SPA)",
-    "build:static": "Generate static pages",
-    "serve": "serve content in 'dist' folder",
-    "rollup": "run the rollup bundler",
-    "nollup": "run the nollup no-bundler",
-    "routify": "run routify"
-  },
-  "scripts": {
-    "dev": "run-p routify nollup",
-    "dev:ssr": "run-p routify rollup",
-    "build": "run-s build:*",
-    "build:app": "routify -b && rollup -c",
-    "build:static": "spank",
-    "serve": "spassr --ssr",
-    "rollup": "rollup -cw",
-    "nollup": "nollup -c --verbose",
-    "routify": "routify"
-  },
-  "devDependencies": {
-    "@rollup/plugin-commonjs": "^19.0.0",
-    "@rollup/plugin-node-resolve": "^13.0.0",
-    "@roxi/routify": "^2.18.1",
-    "cross-env": "^7.0.3",
-    "fs-extra": "^10.0.0",
-    "nollup": "^0.16.4",
-    "npm-run-all": "^4.1.5",
-    "postcss": "^8.2.14",
-    "postcss-import": "^14.0.1",
-    "rollup": "^2.47.0",
-    "rollup-plugin-hot": "^0.1.1",
-    "rollup-plugin-livereload": "^2.0.0",
-    "rollup-plugin-svelte": "^7.1.0",
-    "rollup-plugin-svelte-hot": "^1.0.0-7",
-    "rollup-plugin-terser": "^7.0.2",
-    "rollup-plugin-workbox": "^5.2.1",
-    "spank": "^1.7.0",
-    "spassr": "^2.6.0",
-    "svelte": "^3.38.2",
-    "svelte-preprocess": "^4.7.3",
-    "tossr": "^1.4.2"
-  },
-  "routify": {
-    "extensions": "svelte,html,svx,md"
-  },
-  "spassr": {},
-  "spank": {
-    "blacklist": [
-      "/example/modal/basic/4"
-    ]
-  }
+    "name": "routify-starter",
+    "private": true,
+    "scripts": {
+        "dev": "run-p dev:*",
+        "dev:routify": "routify",
+        "dev:vite": "vite",
+        "preview": "vite preview",
+        "build": "run-s build:*",
+        "build:routify": "routify -b",
+        "build:vite": "vite build"
+    },
+    "devDependencies": {
+        "@roxi/routify": "^2.18.3",
+        "@sveltejs/vite-plugin-svelte": "^1.0.0-next.5",
+        "autoprefixer": "^10.2.5",
+        "npm-run-all": "^4.1.5",
+        "postcss": "^8.2.8",
+        "postcss-import": "^14.0.0",
+        "svelte": "^3.35.0",
+        "svelte-preprocess": "^4.7.0",
+        "vite": "^2.0.5"
+    }
 }

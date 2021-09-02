@@ -1,73 +1,39 @@
-### Oh hai! ❤
-We've created a new project called [**stackmix**](https://github.com/roxiness/stackmix). It's an experimental CLI that let's you customize new Routify templates. Go check it out!
-
----
+### Want full control over everything in this template?
+We've created a new project called [**stackmix**](https://github.com/roxiness/stackmix). It's an experimental CLI that let's you pick and mix all features in a Routify template! Get started with `npx stackmix`
 
 
-# routify-starter
+# Routify Starter
 
 Starter template for [Routify](https://github.com/roxiness/routify).
 
-### Get started
+# Get started
 
-#### Starter templates
-| Template                                  | Description                                                 |
-|-------------------------------------------|-------------------------------------------------------------|
-| [master](https://example.routify.dev/)    | Default template, includes examples folder                  |
-| [blog](https://blog-example.routify.dev/) | Generates a blog from local markdown posts. Includes mdsvex |
-| [auth](https://auth-example.routify.dev/) | Embedded login on protected pages. Includes Auth0           |
-
-To use a template, run:
-
-`npx @roxi/routify init`
-
-or
-
-`npx @roxi/routify init --branch <branch-name>`
-
-The above commands will populate the current directory, they don't create a new one.
-
-### npm scripts
-
-| Syntax           | Description                                                                       |
-|------------------|-----------------------------------------------------------------------------------|
-| `dev`            | Development (port 5000)                                                           |
-| `dev:nollup`     | Development with crazy fast rebuilds (port 5000)                                  |
-| `dev-dynamic`    | Development with dynamic imports                                                  |
-| `build`          | Build a bundled app with SSR + prerendering and dynamic imports                   |
-| `serve`          | Run after a build to preview. Serves SPA on 5000 and SSR on 5005                  |
-| `deploy:*`       | Deploy to netlify or now                                                          |
-| `export`         | Create static pages from content in dist folder (used by `npm run build`)         |
-
-### SSR and pre-rendering
-
-SSR and pre-rendering are included in the default build process.
-
-`npm run deploy:(now|netlify)` will deploy the app with SSR and prerendering included.
-
-To render async data, call the `$ready()` helper whenever your data is ready.
-
-If $ready() is present, rendering will be delayed till the function has been called.
-
-Otherwise it will be rendered instantly.
-
-See [src/pages/example/api/[showId].svelte](https://github.com/roxiness/routify-starter/blob/master/src/pages/example/api/%5BshowId%5D.svelte) for an example.
-
-### Production
-
-* For SPA or SSR apps please make sure that url rewrite is enabled on the server.
-* For SPA redirect to `__app.html`.
-* For SSR redirect to the lambda function or express server.
-
-### Typescript
-
-For Typescript, we recommend [@lamualfa](https://github.com/lamualfa) excellent [routify-ts](https://github.com/lamualfa/routify-ts/)
-
-New project: `npx routify-ts init <project-name> [routify-init-args]`
-
-Existing project: `npx routify-ts convert [project-directory]`
+To get started run:
+```sh
+mkdir routify-app
+cd routify-app
+npx @roxi/routify init
+```
 
 
-### Issues?
+# Scripts
 
-File on Github! See https://github.com/sveltech/routify/issues .
+Run with `npm run <command>`, for example `npm run dev`
+
+| Command   | Description                                   |
+|-----------|-----------------------------------------------|
+| `dev`     | Development (port 5000)                       |
+| `build`   | Build your app for production!                |
+| `preview` | Preview the built version of your app locally |
+
+# Want a service worker?
+Checkout [vite-plugin-pwa](http://npmjs.org/vite-plugin-pwa)
+
+# Extra Configs
+We include a few extra configs to help make it easy to ship a Routify project:
+
+| Config Path        | Description                                                                                                                                                |
+|--------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `netlify.toml`     | This is the [Netlify](https://www.netlify.com/) config, you need this when publishing to Netlify                                                           |
+| `vercel.json`      | This is the [Vercel](https://vercel.com/) config, you need this when publishing to Vercel                                                                  |
+| `public/.htaccess` | If you build your site to static using [spank](https://www.npmjs.com/package/spank) you will need this when putting your site on an apache based webserver |
