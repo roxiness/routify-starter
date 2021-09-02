@@ -1,5 +1,3 @@
 node_modules
 .routify
 dist
-public/build
-src/tmp
