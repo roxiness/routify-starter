@@ -1,5 +1,5 @@
 <script>
-  import { TabsTransition } from "@roxi/routify/decorators";
+  import TabsTransition from "@roxi/routify/runtime/decorators/TabsTransition.svelte";
   import BottomNav from "./_components/BottomNav.svelte";
   import { url, isActive } from "@roxi/routify";
 
