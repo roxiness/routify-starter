@@ -11,14 +11,14 @@
         "build:vite": "vite build"
     },
     "devDependencies": {
-        "@roxi/routify": "^2.18.4",
-        "@sveltejs/vite-plugin-svelte": "^1.0.0-next.34",
-        "autoprefixer": "^10.4.2",
+        "@roxi/routify": "^2.18.7",
+        "@sveltejs/vite-plugin-svelte": "^1.0.0-next.44",
+        "autoprefixer": "^10.4.7",
         "npm-run-all": "^4.1.5",
-        "postcss": "^8.4.5",
-        "postcss-import": "^14.0.2",
-        "svelte": "^3.45.0",
-        "svelte-preprocess": "^4.10.1",
-        "vite": "^2.7.10"
+        "postcss": "^8.4.14",
+        "postcss-import": "^14.1.0",
+        "svelte": "^3.48.0",
+        "svelte-preprocess": "^4.10.6",
+        "vite": "^2.9.9"
     }
 }
