@@ -12,7 +12,7 @@ To get started run:
 ```sh
 mkdir routify-app
 cd routify-app
-npx @roxi/routify init
+npm init routify
 ```
 
 
